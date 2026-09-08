@@ -12,6 +12,12 @@ body {
     color var(--duration-base) var(--ease-out);
 }
 
+/* Held by an open overlay — see Lightbox. */
+body[data-scroll-locked] {
+  overflow: hidden;
+  padding-right: var(--scroll-lock-gap, 0px);
+}
+
 #root {
   position: relative;
   z-index: 1;

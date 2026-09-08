@@ -18,8 +18,6 @@ export function RouterProvider({ children }: { children: ReactNode }) {
   const mounted = useRef(false);
 
   useEffect(() => {
-    // popstate covers back/forward for both path and hash changes. Plain in-page
-    // anchors are deliberately left to the browser so they do not scroll twice.
     const sync = () => setLocation(readLocation());
 
     window.addEventListener('popstate', sync);
@@ -45,7 +43,7 @@ export function RouterProvider({ children }: { children: ReactNode }) {
     mounted.current = true;
 
     if (location.hash) {
-      // Wait a frame so a freshly swapped page has painted its anchors.
+     
       const frame = requestAnimationFrame(() => {
         document.getElementById(location.hash.slice(1))?.scrollIntoView({
           behavior: isFirstRender ? 'auto' : 'smooth',

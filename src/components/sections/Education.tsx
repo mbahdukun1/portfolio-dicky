@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 import { Card } from '@/components/ui/Card';
+import { Icon } from '@/components/ui/Icon';
 import { Section } from '@/components/ui/Section';
 import { certifications, education } from '@/data/education';
 import { formatMonth } from '@/lib/date';
@@ -6,7 +9,16 @@ import { revealDelay } from '@/lib/style';
 
 import styles from './Education.module.css';
 
+const COLLAPSED_COUNT = 4;
+
 export function Education() {
+  const [expanded, setExpanded] = useState(false);
+
+  const visibleCertifications = expanded
+    ? certifications
+    : certifications.slice(0, COLLAPSED_COUNT);
+  const hiddenCount = certifications.length - COLLAPSED_COUNT;
+
   return (
     <Section
       id="education"
@@ -39,12 +51,12 @@ export function Education() {
           <h3 className={styles.columnTitle}>Certifications</h3>
 
           <ul className={styles.certList}>
-            {certifications.map((item, index) => (
+            {visibleCertifications.map((item, index) => (
               <li
                 key={item.id}
                 className={styles.cert}
                 data-reveal=""
-                style={revealDelay(index * 60)}
+                style={revealDelay((index % COLLAPSED_COUNT) * 60)}
               >
                 <span className={styles.certMarker} aria-hidden="true" />
                 <div>
@@ -54,6 +66,22 @@ export function Education() {
               </li>
             ))}
           </ul>
+
+          {hiddenCount > 0 ? (
+            <button
+              type="button"
+              className={styles.toggle}
+              onClick={() => setExpanded((open) => !open)}
+              aria-expanded={expanded}
+            >
+              {expanded ? 'Show less' : `Show ${hiddenCount} more`}
+              <Icon
+                name="chevron-down"
+                size={14}
+                className={expanded ? styles.chevronUp : undefined}
+              />
+            </button>
+          ) : null}
         </div>
       </div>
     </Section>

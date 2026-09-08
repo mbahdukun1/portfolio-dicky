@@ -40,6 +40,37 @@ export const certifications: Certification[] = [
     name: 'Developer Coaching: Flutter',
     issuer: 'Certification',
   },
+  {
+    id: 'mobile-engineer',
+    name: 'Start Your Career to Become Mobile Engineer',
+    issuer: 'GDSC - Certification'
+  },
+  {
+    id: 'sagara-tech',
+    name: 'Back End Engineer (Student Trainee)',
+    issuer: 'Sagara Tech - Certification'
+  },
+  {
+    id: 'computer-network',
+    name: 'Computer Networks Connectivity',
+    issuer: 'Gunadarma - Certification',
+  },
+  {
+    id: 'address-network',
+    name: 'Addressing and Routing in Computer Networks',
+    issuer: 'Gunadarma - Certification'
+  },
+  {
+    id: 'security-networks',
+    name: 'Computer Networks Security',
+    issuer: 'Gunadarma - Certification'
+  },
+  {
+    id: 'recovery-networks',
+    name: 'Computer Networks Failure Tracking and Recovery',
+    issuer: 'Gunadarma - Certification'
+  }
+
 ];
 
 export const languages: { name: string; level: string }[] = [

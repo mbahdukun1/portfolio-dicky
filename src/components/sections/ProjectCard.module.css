@@ -102,6 +102,16 @@
   background-color: var(--accent);
 }
 
+.pending {
+  flex: 1;
+  margin-top: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
 .footer {
   margin-top: var(--space-5);
   padding-top: var(--space-5);
@@ -132,6 +142,10 @@
 
 .links a:hover {
   opacity: 0.75;
+}
+
+.story {
+  font-weight: 500;
 }
 
 @media (max-width: 900px) {

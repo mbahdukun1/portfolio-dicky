@@ -24,6 +24,12 @@ const STROKE_ICONS: Partial<Record<IconName, ReactNode>> = {
   'arrow-up-right': <path d="M7 17 17 7M8.5 7H17v8.5" />,
   'arrow-down': <path d="M12 4.5v15M5.5 13l6.5 6.5 6.5-6.5" />,
   'chevron-down': <path d="m5.5 9 6.5 6.5L18.5 9" />,
+  expand: (
+    <>
+      <circle cx="10.75" cy="10.75" r="6.5" />
+      <path d="M10.75 8.25v5M8.25 10.75h5M15.5 15.5 20.5 20.5" />
+    </>
+  ),
   sun: (
     <>
       <circle cx="12" cy="12" r="4.25" />

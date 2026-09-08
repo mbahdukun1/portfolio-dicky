@@ -16,7 +16,7 @@ export function Work() {
       eyebrow="Selected work"
       title="Systems I have designed, built, and shipped"
       pattern="stripes"
-      description="Warehouse operations, invoicing at scale, enterprise tax integration, and a legacy rebuild."
+      description="The three most recent — a warehouse platform, the handheld app that works its floor, and the workshop app behind its fleet. Each one has a case study behind it."
       tone="sunken"
     >
       {featuredWork ? (
@@ -36,7 +36,7 @@ export function Work() {
               {remaining} more {remaining === 1 ? 'project' : 'projects'}
             </p>
             <p className={styles.moreText}>
-              The rest, including the freelance and personal builds.
+              The rest of the archive, including the freelance and personal builds.
             </p>
           </div>
 

@@ -1,4 +1,5 @@
 import { About } from '@/components/sections/About';
+import { Colophon } from '@/components/sections/Colophon';
 import { Contact } from '@/components/sections/Contact';
 import { Education } from '@/components/sections/Education';
 import { Experience } from '@/components/sections/Experience';
@@ -15,6 +16,7 @@ export function HomePage() {
       <Experience />
       <Skills />
       <Education />
+      <Colophon />
       <Contact />
     </>
   );

@@ -1,6 +1,6 @@
 import type { SkillGroup } from '@/types/portfolio';
 
-export const topSkills: string[] = ['MEAN Stack', 'NestJS', '.NET Framework'];
+export const topSkills: string[] = ['Full Stack', 'TypeScript', 'React', 'Node.js'];
 
 export const skillGroups: SkillGroup[] = [
   {
@@ -12,7 +12,9 @@ export const skillGroups: SkillGroup[] = [
     items: [
       'React',
       'React Native',
-      'Vue.js',
+      'Next.js',
+      'Vite',
+      'Tailwind CSS',
       'TypeScript',
       'JavaScript (ES2022+)',
       'HTML5',
@@ -30,11 +32,11 @@ export const skillGroups: SkillGroup[] = [
       'Node.js',
       'Express.js',
       'NestJS',
-      '.NET Framework',
-      'C#',
+      'Fastify',
       'REST API design',
       'Microservices',
       'Payment gateway integration',
+      'ERP Intergration Oracle/SAP',
     ],
   },
   {
@@ -46,7 +48,9 @@ export const skillGroups: SkillGroup[] = [
     items: [
       'PostgreSQL',
       'Sequelize ORM',
-      'MongoDB',
+      'Type ORM',
+      'Redis',
+      'BullMQ',
       'Database modelling',
       'Query optimisation',
       'SAP ↔ DJP integration',
@@ -60,14 +64,15 @@ export const skillGroups: SkillGroup[] = [
     description:
       'How the work gets planned, shipped, and kept alive once it is in production.',
     items: [
-      'Git & GitHub',
+      'Git, GitHub & Bitbucket',
+      'Docker & linux Servers',
       'Semi-DevOps deployment',
-      'Server maintenance',
       'Dev / Staging / Production workflow',
       'Technical Design Documents',
       'Requirement analysis',
       'Performance testing',
-      'RPA (Automation Anywhere)',
+      'Postman & Insomnia',
+      'DBeaver'
     ],
   },
 ];

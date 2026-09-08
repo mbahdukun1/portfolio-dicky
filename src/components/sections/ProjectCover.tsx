@@ -7,6 +7,9 @@ import styles from './ProjectCover.module.css';
 
 const VARIANTS = 5;
 
+/** The stack offsets each layer, so a third one climbs out of the cover box. */
+const MAX_LAYERS = 2;
+
 function variantOf(id: string): number {
   let sum = 0;
   for (let index = 0; index < id.length; index += 1) sum += id.charCodeAt(index);
@@ -30,7 +33,7 @@ interface ProjectCoverProps {
 export function ProjectCover({ item, className }: ProjectCoverProps) {
   const sources = useMemo(() => {
     const list = item.images ?? (item.image ? [item.image] : []);
-    return list.filter(Boolean);
+    return list.filter(Boolean).slice(0, MAX_LAYERS);
   }, [item.image, item.images]);
 
   const [order, setOrder] = useState(() => sources.map((_, index) => index));
@@ -51,7 +54,12 @@ export function ProjectCover({ item, className }: ProjectCoverProps) {
   if (visible.length > 0) {
     return (
       <div
-        className={cn(styles.cover, visible.length > 1 && styles.stack, className)}
+        className={cn(
+          styles.cover,
+          visible.length > 1 && styles.stack,
+          visible.length > 1 && item.coverShape === 'phone' && styles.phones,
+          className,
+        )}
         data-layers={visible.length}
       >
         {visible.map((sourceIndex, position) => {

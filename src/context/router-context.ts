@@ -2,7 +2,6 @@ import { createContext } from 'react';
 
 const RAW_BASE = import.meta.env.BASE_URL || '/';
 
-/** Vite base without its trailing slash — '' at the root, '/repo-name' on GitHub Pages. */
 export const BASE = RAW_BASE.endsWith('/') ? RAW_BASE.slice(0, -1) : RAW_BASE;
 
 export type RoutePath = '/' | '/projects' | '/experience';
@@ -16,7 +15,6 @@ export interface RouterContextValue extends RouteLocation {
   navigate: (to: string) => void;
 }
 
-/** Strips the Vite base and any trailing slash so routes compare as '/', '/projects', … */
 export function normalisePath(pathname: string): string {
   let path = pathname;
   if (BASE && path.startsWith(BASE)) path = path.slice(BASE.length);
@@ -25,7 +23,6 @@ export function normalisePath(pathname: string): string {
   return path;
 }
 
-/** Turns an app path ('/projects', '/#work') into a real href honouring the Vite base. */
 export function toHref(to: string): string {
   if (to.startsWith('#') || to.startsWith('//') || /^[a-z]+:/i.test(to)) return to;
   return `${BASE}${to}` || '/';

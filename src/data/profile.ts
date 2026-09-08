@@ -9,8 +9,8 @@ export const profile: Profile = {
   tagline:
     'I design and build end-to-end systems — from the interface people touch to the services, databases, and integrations behind them.',
   about: [
-    'I am a software engineer based in Jakarta with four years of professional experience across product teams, consultancies, and enterprise delivery. My work sits on both sides of the stack: interfaces built with React, React Native, and Vue, and the Node.js, NestJS, and .NET services that feed them.',
-    'Most of my time is spent on systems that have to survive real usage — a microservices-based e-invoicing platform with a payment gateway, an HRIS extended feature by feature, and data integration between SAP and DJP for automated tax reporting. That work taught me to care about architecture decisions early, because they are the expensive ones to reverse.',
+    'I am a software engineer based in Jakarta with four years of professional experience across product teams, consultancies, and enterprise delivery. My work sits on both sides of the stack: interfaces built with React, React Native, and TypeScript, and the Node.js and NestJS services — with PostgreSQL, Redis, and BullMQ behind them — that keep those interfaces fed.',
+    'Most of what I build has to agree with a system I do not control. Warehouse operations across ~40 sites, kept in step with Oracle NetSuite by a middleware I built; handheld apps that post into SAP Business One from the floor and keep working on a local database when the signal does not; automated tax reporting between SAP and DJP; a microservices e-invoicing platform with a payment gateway behind it. Different ERPs, one lesson — the integration boundary is where the expensive mistakes live, so it is the part I design first.',
     'Today I focus on architecting applications before they are written: leading requirement analysis, writing technical design documents with the system analyst team, and running semi-DevOps deployments across development, staging, and production. I like being the person who connects the plan, the code, and the server it eventually runs on.',
   ],
   avatar: '/portrait.jpg',

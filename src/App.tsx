@@ -4,8 +4,10 @@ import { Backdrop } from '@/components/layout/Backdrop';
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
+import { findCaseStudy } from '@/data/caseStudies';
 import { useReveal } from '@/hooks/useReveal';
 import { useRouter } from '@/hooks/useRouter';
+import { CaseStudyPage } from '@/pages/CaseStudyPage';
 import { ExperiencePage } from '@/pages/ExperiencePage';
 import { HomePage } from '@/pages/HomePage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
@@ -20,11 +22,27 @@ const PAGE_TITLES: Record<string, string> = {
   '/experience': 'The journey — Dicky Maulana',
 };
 
+/** '/projects/onda-gt' → the case study behind it, if there is one. */
+function caseStudyFor(path: string) {
+  const slug = path.startsWith('/projects/') ? path.slice('/projects/'.length) : '';
+  return slug ? findCaseStudy(slug) : undefined;
+}
+
 function renderPage(path: string): ReactNode {
   if (path === '/') return <HomePage />;
   if (path === '/projects') return <ProjectsPage />;
   if (path === '/experience') return <ExperiencePage />;
+
+  const study = caseStudyFor(path);
+  if (study) return <CaseStudyPage key={study.slug} study={study} />;
+
   return <NotFoundPage />;
+}
+
+function titleFor(path: string): string {
+  const study = caseStudyFor(path);
+  if (study) return `${study.title} — Dicky Maulana`;
+  return PAGE_TITLES[path] ?? HOME_TITLE;
 }
 
 export default function App() {
@@ -33,7 +51,7 @@ export default function App() {
   useReveal(path);
 
   useEffect(() => {
-    document.title = PAGE_TITLES[path] ?? HOME_TITLE;
+    document.title = titleFor(path);
   }, [path]);
 
   return (
