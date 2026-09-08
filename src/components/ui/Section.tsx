@@ -1,6 +1,9 @@
 import { useRef, type ReactNode } from 'react';
 
 import { Container } from '@/components/layout/Container';
+import { Icon } from '@/components/ui/Icon';
+import { Link } from '@/components/ui/Link';
+import { nextSection } from '@/data/navigation';
 import { usePointerGlow } from '@/hooks/usePointerGlow';
 import { cn } from '@/lib/cn';
 import type { SectionPattern } from '@/types/portfolio';
@@ -30,6 +33,7 @@ export function Section({
 }: SectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const headingId = `${id}-heading`;
+  const next = nextSection(id);
 
   usePointerGlow(sectionRef);
 
@@ -58,6 +62,14 @@ export function Section({
         </header>
 
         {children}
+
+        {next ? (
+          <Link to={`/#${next.id}`} className={styles.next} ariaLabel={`Next section: ${next.label}`}>
+            <span className={styles.nextLabel}>Next</span>
+            <span className={styles.nextName}>{next.label}</span>
+            <Icon name="arrow-down" size={15} className={styles.nextIcon} />
+          </Link>
+        ) : null}
       </Container>
     </section>
   );

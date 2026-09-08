@@ -20,13 +20,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-3);
-}
-
-.index {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wide);
-  color: var(--text-tertiary);
+  padding-top: 0.4em;
 }
 
 .dot,
@@ -286,10 +280,6 @@
   .chapter {
     grid-template-columns: 24px minmax(0, 1fr);
     gap: var(--space-4);
-  }
-
-  .index {
-    display: none;
   }
 
   .story p {

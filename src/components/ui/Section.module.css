@@ -127,6 +127,55 @@
   color: var(--text-secondary);
 }
 
+.next {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background-color: var(--surface);
+  transition:
+    border-color var(--duration-base) var(--ease-out),
+    background-color var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+
+.next:hover,
+.next:focus-visible {
+  border-color: var(--accent);
+  background-color: var(--accent-muted);
+  transform: translate3d(0, 2px, 0);
+}
+
+.nextLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.nextName {
+  font-size: var(--text-base);
+  color: var(--text-primary);
+}
+
+.next:hover .nextName,
+.next:focus-visible .nextName {
+  color: var(--accent);
+}
+
+.nextIcon {
+  color: var(--accent);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.next:hover .nextIcon {
+  transform: translate3d(0, 3px, 0);
+}
+
 @media (max-width: 640px) {
   .section {
     padding-block: var(--space-9);
@@ -134,5 +183,18 @@
 
   .header {
     margin-bottom: var(--space-6);
+  }
+
+  .next {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .next:hover,
+  .next:focus-visible,
+  .next:hover .nextIcon {
+    transform: none;
   }
 }

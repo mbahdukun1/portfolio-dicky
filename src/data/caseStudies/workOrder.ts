@@ -104,37 +104,37 @@ export const workOrderCase: CaseStudy = {
   gallery: [
     {
       id: 'login',
-      src: `${base}/login.jpeg`,
+      src: `${base}/login.webp`,
       title: 'Single sign-on',
       caption: 'One company login shared with the other Inline products, with build and environment shown.',
     },
     {
       id: 'dashboard-open',
-      src: `${base}/dashboard-open.jpeg`,
+      src: `${base}/dashboard-open.webp`,
       title: 'Open work orders',
       caption: 'Step 1 of 9, no mechanic assigned yet, and a START button to claim the job.',
     },
     {
       id: 'dashboard-running',
-      src: `${base}/dashboard-running.jpeg`,
+      src: `${base}/dashboard-running.webp`,
       title: 'In progress',
       caption: 'A running timer, the mechanic on the job, and the next step named — plus a Waiting job below it.',
     },
     {
       id: 'dashboard-finished',
-      src: `${base}/dashboard-finished.jpeg`,
+      src: `${base}/dashboard-finished.webp`,
       title: 'Finished',
       caption: 'Closed jobs with the mechanic who completed them and the date.',
     },
     {
       id: 'create-work-order',
-      src: `${base}/create-work-order.jpeg`,
+      src: `${base}/create-work-order.webp`,
       title: 'Create a work order',
       caption: 'Unit, driver, problem — and the nine steps the job will follow, shown before submitting.',
     },
     {
       id: 'profile',
-      src: `${base}/profile.jpeg`,
+      src: `${base}/profile.webp`,
       title: 'Profile',
       caption: 'Role and employment record behind every action. Contact details blurred for this write-up.',
     },

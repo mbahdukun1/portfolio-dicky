@@ -22,7 +22,6 @@ const PAGE_TITLES: Record<string, string> = {
   '/experience': 'The journey — Dicky Maulana',
 };
 
-/** '/projects/onda-gt' → the case study behind it, if there is one. */
 function caseStudyFor(path: string) {
   const slug = path.startsWith('/projects/') ? path.slice('/projects/'.length) : '';
   return slug ? findCaseStudy(slug) : undefined;

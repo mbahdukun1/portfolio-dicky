@@ -8,7 +8,6 @@ import { wmsCase } from './wms';
 import { wmsMobileCase } from './wmsMobile';
 import { workOrderCase } from './workOrder';
 
-/** Long-form project articles, keyed by the slug that also serves as `WorkItem.id`. */
 export const caseStudies: CaseStudy[] = [
   wmsCase,
   wmsMobileCase,

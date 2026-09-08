@@ -69,12 +69,12 @@ export function Colophon() {
           <dd>{caseStudies.length}</dd>
         </div>
         <div>
-          <dt>Runtime dependencies</dt>
-          <dd>3</dd>
+          <dt>Screens documented</dt>
+          <dd>{caseStudies.reduce((total, study) => total + study.gallery.length, 0)}</dd>
         </div>
         <div>
-          <dt>Trackers</dt>
-          <dd>0</dd>
+          <dt>Runtime dependencies</dt>
+          <dd>3</dd>
         </div>
       </dl>
     </Section>

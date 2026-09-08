@@ -95,12 +95,14 @@
 @media (max-width: 1024px) {
   .scene {
     min-height: 340px;
+    padding-bottom: 148px;
   }
 }
 
 @media (max-width: 520px) {
   .scene {
     min-height: 280px;
+    padding-bottom: 168px;
   }
 
   .stack {

@@ -1,5 +1,5 @@
 import { experiences } from '@/data/experiences';
-import { publishedWork } from '@/data/work';
+import { deliveredWork } from '@/data/work';
 import { monthsBetween, yearsSince } from '@/lib/date';
 import type { Stat } from '@/types/portfolio';
 
@@ -24,9 +24,9 @@ export const stats: Stat[] = [
     detail: 'Two years on one microservices platform, from build to production.',
   },
   {
-    value: String(publishedWork.length),
+    value: String(deliveredWork.length),
     label: 'Systems delivered',
-    detail: 'E-invoicing, tax integration, HRIS, and process automation.',
+    detail: 'Warehouse platforms, e-invoicing, ERP integration, and mobile field apps.',
   },
   {
     value: '4',

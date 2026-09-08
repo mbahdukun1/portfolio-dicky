@@ -3,7 +3,6 @@ export interface ColophonEntry {
   detail: string;
 }
 
-/** What this site is built with. Kept honest — every line is in package.json or src/. */
 export const stack: ColophonEntry[] = [
   {
     name: 'React 19 + TypeScript',
@@ -35,7 +34,6 @@ export const stack: ColophonEntry[] = [
   },
 ];
 
-/** How it is put together — the decisions, not the dependencies. */
 export const method: ColophonEntry[] = [
   {
     name: 'Content is typed data',

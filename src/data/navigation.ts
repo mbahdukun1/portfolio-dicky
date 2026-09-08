@@ -7,8 +7,14 @@ export const navigation: NavItem[] = [
   { id: 'experience', label: 'Experience' },
   { id: 'skills', label: 'Skills' },
   { id: 'education', label: 'Education' },
+  { id: 'colophon', label: 'Colophon' },
   { id: 'contact', label: 'Contact' },
 ];
+
+export function nextSection(id: string): NavItem | undefined {
+  const index = navigation.findIndex((item) => item.id === id);
+  return index === -1 ? undefined : navigation[index + 1];
+}
 
 export interface PageLink {
   to: string;

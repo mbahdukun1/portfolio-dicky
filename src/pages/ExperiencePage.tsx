@@ -21,7 +21,6 @@ function Chapter({ experience, index }: { experience: Experience; index: number 
       style={revealDelay(Math.min(index, 4) * 60)}
     >
       <div className={styles.rail} aria-hidden="true">
-        <span className={styles.index}>{String(index + 1).padStart(2, '0')}</span>
         <span className={isCurrent ? styles.dotCurrent : styles.dot} />
         <span className={styles.line} />
       </div>

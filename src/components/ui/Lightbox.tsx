@@ -14,11 +14,6 @@ interface LightboxProps {
   onNavigate: (index: number) => void;
 }
 
-/**
- * Full-screen screenshot viewer. Wraps around at both ends so arrow keys never
- * dead-end, and traps nothing beyond the close/prev/next controls it renders —
- * the page underneath is inert while it is open.
- */
 export function Lightbox({ shots, index, onClose, onNavigate }: LightboxProps) {
   const dialog = useRef<HTMLDivElement>(null);
   const shot = shots[index];
@@ -97,12 +92,14 @@ export function Lightbox({ shots, index, onClose, onNavigate }: LightboxProps) {
         ) : null}
 
         <figure className={styles.figure}>
-          <img
-            key={shot.src}
-            className={cn(styles.image, shot.shape === 'wide' && styles.wide)}
-            src={shot.src}
-            alt={shot.title}
-          />
+          <div className={styles.viewport}>
+            <img
+              key={shot.src}
+              className={cn(styles.image, shot.shape === 'wide' && styles.wide)}
+              src={shot.src}
+              alt={shot.title}
+            />
+          </div>
 
           <figcaption className={styles.caption}>
             <span className={styles.captionTitle}>{shot.title}</span>

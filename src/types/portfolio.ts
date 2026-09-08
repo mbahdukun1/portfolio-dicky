@@ -5,6 +5,7 @@ export type SectionId =
   | 'skills'
   | 'work'
   | 'education'
+  | 'colophon'
   | 'contact';
 
 export interface NavItem {
@@ -94,29 +95,22 @@ export interface WorkItem {
   repo?: string;
   image?: string;
   images?: string[];
-  /**
-   * How the cover images are framed. 'phone' stands portrait screenshots up side by
-   * side; the default lays landscape ones out as an offset stack.
-   */
   coverShape?: 'phone' | 'wide';
   /** The single hero project on the home page. */
   featured?: boolean;
-  /** Listed with its cover, but the write-up is not ready yet. */
   comingSoon?: boolean;
+  placeholder?: boolean;
   draft?: boolean;
 }
 
-/** One screenshot in a case study, referenced from a chapter by `id`. */
 export interface Shot {
   id: string;
   src: string;
   title: string;
   caption: string;
-  /** Frame proportions: a phone screen, or a wide console/diagram. */
   shape?: 'phone' | 'wide';
 }
 
-/** One step of the end-to-end walkthrough. */
 export interface FlowStep {
   title: string;
   detail: string;
@@ -126,13 +120,10 @@ export interface CaseChapter {
   id: string;
   heading: string;
   body: string[];
-  /** Ids of the shots illustrating this chapter. */
   shots?: string[];
 }
 
-/** The long-form article behind a project, rendered at /projects/<slug>. */
 export interface CaseStudy {
-  /** Matches the `WorkItem.id` it belongs to and the URL segment. */
   slug: string;
   title: string;
   context: string;
@@ -140,7 +131,6 @@ export interface CaseStudy {
   lede: string;
   role: string;
   platform: string;
-  /** Opening paragraphs: what the product is and who it is for. */
   overview: string[];
   flow: FlowStep[];
   chapters: CaseChapter[];

@@ -5,7 +5,7 @@ import { PageIntro } from '@/components/layout/PageIntro';
 import { ProjectCard } from '@/components/sections/ProjectCard';
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
-import { publishedWork, workTags } from '@/data/work';
+import { publishedWork, upcomingCount, workTags } from '@/data/work';
 import { cn } from '@/lib/cn';
 
 import styles from './ProjectsPage.module.css';
@@ -32,6 +32,9 @@ export function ProjectsPage() {
         lede="From enterprise platforms to things I built for myself. Each entry says what it does and what I contributed."
         meta={[
           { label: 'Projects', value: String(publishedWork.length) },
+          ...(upcomingCount > 0
+            ? [{ label: 'Coming soon', value: String(upcomingCount) }]
+            : []),
           { label: 'Since', value: oldest },
           { label: 'Technologies', value: String(workTags.length) },
         ]}

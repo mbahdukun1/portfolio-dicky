@@ -49,8 +49,6 @@
   color: var(--text-secondary);
 }
 
-/* End-to-end walkthrough */
-
 .flow {
   margin-top: var(--space-9);
   padding-top: var(--space-8);
@@ -99,8 +97,6 @@
   color: var(--text-secondary);
 }
 
-/* Article chapters */
-
 .chapter {
   margin-top: var(--space-9);
   padding-top: var(--space-8);
@@ -129,11 +125,6 @@
   margin-top: var(--space-6);
 }
 
-/*
- * A lone desktop screenshot among phone screens gets its own row; a study made
- * entirely of them (`.wideSet`) drops the span and widens the track instead,
- * otherwise every shot becomes a full-width band.
- */
 .shotWide {
   grid-column: 1 / -1;
 }
@@ -145,8 +136,6 @@
 .wideSet .shotWide {
   grid-column: auto;
 }
-
-/* Outcomes */
 
 .outcomes {
   margin-top: var(--space-9);
@@ -190,8 +179,6 @@
   background-color: var(--accent);
 }
 
-/* Gallery */
-
 .gallery {
   margin-top: var(--space-10);
   padding-top: var(--space-8);
@@ -207,8 +194,6 @@
 .galleryGrid.wideSet {
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
 }
-
-/* Outro */
 
 .outro {
   display: flex;
@@ -245,5 +230,11 @@
   .outro {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .shots:not(.wideSet),
+  .galleryGrid:not(.wideSet) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4) var(--space-3);
   }
 }

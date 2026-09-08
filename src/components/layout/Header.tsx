@@ -22,7 +22,6 @@ export function Header() {
   const sectionIds = useMemo(() => navigation.map((item) => item.id), []);
   const scrolledSection = useScrollSpy(sectionIds);
 
-  // Off the home page there is nothing to spy on; highlight the section the page belongs to.
   const activeId = path === '/' ? scrolledSection : (PAGE_FOR_SECTION[path] ?? '');
 
   useLockBodyScroll(menuOpen);

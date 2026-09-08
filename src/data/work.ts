@@ -30,7 +30,7 @@ export const workItems: WorkItem[] = [
       'i18n',
     ],
 
-    images: ['/projects/wms/login.jpg', '/projects/wms/dashboard.png'],
+    images: ['/projects/wms/login.webp', '/projects/wms/dashboard.webp'],
     href: '',
     repo: '',
   },
@@ -49,7 +49,7 @@ export const workItems: WorkItem[] = [
     ],
     stack: ['Mobile', 'Offline-first', 'SQLite', 'REST API', 'Barcode Scanning'],
     coverShape: 'phone',
-    images: ['/projects/wms-mobile/login.jpeg', '/projects/wms-mobile/goods-receive.jpeg'],
+    images: ['/projects/wms-mobile/login.webp', '/projects/wms-mobile/goods-receive.webp'],
   },
   {
     id: 'work-order',
@@ -66,7 +66,7 @@ export const workItems: WorkItem[] = [
     ],
     stack: ['Mobile', 'SSO', 'REST API', 'Role-based access', 'Workflow'],
     coverShape: 'phone',
-    images: ['/projects/wo/login.jpeg', '/projects/wo/dashboard-running.jpeg'],
+    images: ['/projects/wo/login.webp', '/projects/wo/dashboard-running.webp'],
   },
   {
     id: 'e-invoice',
@@ -83,7 +83,7 @@ export const workItems: WorkItem[] = [
     ],
     stack: ['Microservices', 'Node.js', 'REST API', 'Payment Gateway', 'Mobile'],
     coverShape: 'phone',
-    images: ['/projects/e-invoice/splash.png', '/projects/e-invoice/login.png'],
+    images: ['/projects/e-invoice/splash.webp', '/projects/e-invoice/login.webp'],
   },
   {
     id: 'onda-gt',
@@ -100,7 +100,7 @@ export const workItems: WorkItem[] = [
     ],
     stack: ['Mobile', 'SAP', 'System Integration', 'Barcode Scanning', 'REST API'],
     coverShape: 'phone',
-    images: ['/projects/onda-gt/landing.png', '/projects/onda-gt/sap-connection.png'],
+    images: ['/projects/onda-gt/landing.webp', '/projects/onda-gt/sap-connection.webp'],
   },
   {
     id: 'mamapa',
@@ -115,7 +115,7 @@ export const workItems: WorkItem[] = [
       'Designed the recipe page around cooking: ingredients as a checklist, steps as one action per card.',
     ],
     stack: ['Mobile', 'AI Integration', 'REST API', 'Authentication'],
-    images: ['/projects/mamapa/cover.png'],
+    images: ['/projects/mamapa/cover.webp'],
   },
   {
     id: 'anniversary',
@@ -131,7 +131,7 @@ export const workItems: WorkItem[] = [
       'Held the whole thing to one dark palette, one serif, and motion that never loops visibly.',
     ],
     stack: ['Web App', 'CSS Animation', 'Micro-interactions', 'Responsive'],
-    images: ['/projects/anniversary/cover.png', '/projects/anniversary/hero.png'],
+    images: ['/projects/anniversary/cover.webp', '/projects/anniversary/hero.webp'],
   },
   {
     id: 'travelaku',
@@ -142,7 +142,7 @@ export const workItems: WorkItem[] = [
     description: 'A travel platform for exploring Indonesia, from the islands to the itinerary.',
     contributions: [],
     stack: [],
-    images: ['/projects/travelaku/cover.png'],
+    images: ['/projects/travelaku/cover.webp'],
   },
   {
     id: 'healthcare-automation',
@@ -154,7 +154,7 @@ export const workItems: WorkItem[] = [
       'Automating the patient encounter end to end — from the front desk through to the back office.',
     contributions: [],
     stack: [],
-    images: ['/projects/healthcare/cover.png'],
+    images: ['/projects/healthcare/cover.webp'],
   },
   {
     id: 'sap-djp',
@@ -216,6 +216,7 @@ export const workItems: WorkItem[] = [
   {
     id: 'sample-inventory',
     draft: true,
+    placeholder: true,
     title: 'Inventory & Stock Web App',
     context: 'Freelance',
     period: '2025',
@@ -233,6 +234,7 @@ export const workItems: WorkItem[] = [
   {
     id: 'sample-pos',
     draft: true,
+    placeholder: true,
     title: 'Point of Sale Mobile App',
     context: 'Personal project',
     period: '2025',
@@ -250,6 +252,7 @@ export const workItems: WorkItem[] = [
   {
     id: 'sample-cms',
     draft: true,
+    placeholder: true,
     title: 'Company Profile & CMS',
     context: 'Freelance',
     period: '2024',
@@ -267,6 +270,7 @@ export const workItems: WorkItem[] = [
   {
     id: 'sample-tasks',
     draft: true,
+    placeholder: true,
     title: 'Task Management Dashboard',
     context: 'Personal project',
     period: '2024',
@@ -285,29 +289,33 @@ export const workItems: WorkItem[] = [
 
 export const publishedWork: WorkItem[] = workItems.filter((item) => !item.draft);
 
+export const deliveredWork: WorkItem[] = workItems.filter(
+  (item) => !item.comingSoon && !item.placeholder,
+);
+
+const upcomingWork: WorkItem[] = publishedWork.filter((item) => item.comingSoon);
+
+const PIPELINE_COUNT = 10;
+
+export const upcomingCount = Math.max(PIPELINE_COUNT, upcomingWork.length);
+
 /** The hero project on the home page. */
 export const featuredWork: WorkItem | undefined =
   publishedWork.find((item) => item.featured) ?? publishedWork[0];
 
-/** How many projects sit beside the featured one on the home page. */
 const HOME_HIGHLIGHTS = 2;
 
-/** The most recent year a period mentions: '2023 — 2025' → 2025. */
 function latestYear(item: WorkItem): number {
   const years = item.period.match(/\d{4}/g) ?? [];
   return years.reduce((newest, year) => Math.max(newest, Number(year)), 0);
 }
 
-/**
- * The two most recent projects, shown beside the featured one so the home page
- * always leads with current work. Everything else lives on /projects.
- */
 export const highlightedWork: WorkItem[] = publishedWork
   .filter((item) => item.id !== featuredWork?.id && !item.comingSoon)
   .sort((a, b) => latestYear(b) - latestYear(a))
   .slice(0, HOME_HIGHLIGHTS);
 
-/** Technologies ordered by how often they appear, for the /projects filter bar. */
+
 export const workTags: string[] = Object.entries(
   publishedWork.reduce<Record<string, number>>((counts, item) => {
     item.stack.forEach((tech) => {

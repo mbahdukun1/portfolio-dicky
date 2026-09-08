@@ -15,10 +15,6 @@
   object-position: top center;
 }
 
-/*
- * A stack is screenshots, which read from the top. A lone cover is composed art —
- * crop it evenly so the subject is not sliced off the bottom.
- */
 .cover:not(.stack) .image {
   object-position: center;
 }
@@ -56,10 +52,6 @@
   transform: scale(calc(1 - var(--layer) * 0.06));
 }
 
-/*
- * Portrait screenshots stood up as phones, side by side and slightly overlapped.
- * Cropping a phone screen into the landscape stack above leaves only its status bar.
- */
 .phones .layer {
   inset: auto;
   top: 50%;

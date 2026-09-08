@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { Section } from '@/components/ui/Section';
-import { featuredWork, highlightedWork, publishedWork } from '@/data/work';
+import { featuredWork, highlightedWork, publishedWork, upcomingCount } from '@/data/work';
 
 import { ProjectCard } from './ProjectCard';
 import styles from './Work.module.css';
@@ -37,6 +37,11 @@ export function Work() {
             </p>
             <p className={styles.moreText}>
               The rest of the archive, including the freelance and personal builds.
+              {upcomingCount > 0
+                ? ` ${upcomingCount} more ${
+                    upcomingCount === 1 ? 'is' : 'are'
+                  } on the way.`
+                : ''}
             </p>
           </div>
 

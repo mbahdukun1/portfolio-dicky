@@ -91,6 +91,13 @@
   height: 100%;
 }
 
+.viewport {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  max-width: 100%;
+}
+
 .image {
   max-height: 100%;
   max-width: min(100%, 420px);
@@ -143,6 +150,20 @@
 }
 
 @media (max-width: 720px) {
+  .viewport:has(.wide) {
+    width: 100%;
+    overflow-x: auto;
+    justify-items: start;
+    overscroll-behavior-x: contain;
+  }
+
+  .viewport:has(.wide) .wide {
+    max-width: none;
+    max-height: none;
+    height: min(62vh, 100%);
+    width: auto;
+  }
+
   .stage {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas:

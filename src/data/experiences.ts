@@ -102,12 +102,12 @@ export const experiences: Experience[] = [
     location: 'Jakarta, Indonesia',
     employmentType: 'Contract',
     track: 'software',
-    chapter: 'A short contract',
+    chapter: 'Both ends, on contract',
     summary:
       'Short full-stack engagement delivering application features across frontend and backend.',
     story: [
-      'Two months on contract, sitting between a back-end role and the platform work that came after.',
-      'Full-stack application work on client projects, moving across frontend and backend as each one needed it.',
+      'Client projects on a two-month contract, taken end to end rather than by layer — whichever side of the stack a feature needed that week is the side I was on.',
+      'Contract work rewards range over depth: you arrive at a codebase you did not write, ship something that fits it, and leave it in a state the next person can pick up.',
     ],
     achievements: [
       'Delivered full-stack application work across the frontend and backend of client projects.',
@@ -204,11 +204,11 @@ export const experiences: Experience[] = [
     location: 'Jakarta, Indonesia',
     employmentType: 'Internship',
     track: 'earlier',
-    chapter: 'Before software',
+    chapter: 'Repair or replace',
     summary:
-      'Pre-software chapter: vehicle inspection and repair on the Daihatsu sales operation floor.',
+      'Vehicle inspection and repair on the Daihatsu sales operation floor.',
     story: [
-      'The pre-software chapter, on the Daihatsu sales operation floor. Regular vehicle checks to keep units in good condition, and diagnosis of damaged parts — deciding, each time, whether the thing in front of me should be repaired or replaced.',
+      'On the Daihatsu sales operation floor. Regular vehicle checks to keep units in good condition, and diagnosis of damaged parts — deciding, each time, whether the thing in front of me should be repaired or replaced.',
       'It is the same instinct debugging asks for. Heavier tools, that is all.',
     ],
     achievements: [

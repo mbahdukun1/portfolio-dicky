@@ -7,12 +7,10 @@ import styles from './ShotFrame.module.css';
 interface ShotFrameProps {
   shot: Shot;
   onOpen: () => void;
-  /** Captions are useful in the gallery and noisy inline in an article. */
   showCaption?: boolean;
   className?: string;
 }
 
-/** A screenshot thumbnail that opens the lightbox. */
 export function ShotFrame({ shot, onOpen, showCaption = true, className }: ShotFrameProps) {
   const isWide = shot.shape === 'wide';
 

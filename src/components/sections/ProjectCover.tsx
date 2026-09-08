@@ -7,7 +7,6 @@ import styles from './ProjectCover.module.css';
 
 const VARIANTS = 5;
 
-/** The stack offsets each layer, so a third one climbs out of the cover box. */
 const MAX_LAYERS = 2;
 
 function variantOf(id: string): number {
