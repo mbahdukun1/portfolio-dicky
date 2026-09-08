@@ -1,0 +1,120 @@
+.scene {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: clamp(300px, 34vw, 430px);
+  perspective: 1300px;
+  opacity: var(--enter, 1);
+  animation: bob 9s var(--ease-in-out) infinite alternate;
+}
+
+@keyframes bob {
+  to {
+    transform: translateY(-14px);
+  }
+}
+
+.floor {
+  position: absolute;
+  bottom: 12%;
+  width: 60%;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--aura-a);
+  filter: blur(30px);
+  opacity: 0.85;
+}
+
+.stack {
+  position: relative;
+  width: clamp(210px, 24vw, 290px);
+  aspect-ratio: 1;
+  transform-style: preserve-3d;
+  transform: translateY(calc((1 - var(--enter, 1)) * 36px))
+    rotateX(calc(57deg + var(--tilt-x, 0deg)))
+    rotateZ(calc(-38deg + var(--tilt-y, 0deg)));
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 16px 20px;
+  border: 1px solid var(--border-strong);
+  border-radius: 22px;
+  background-image: var(--plane);
+  background-color: var(--surface);
+  box-shadow: var(--lift-shadow);
+  opacity: calc(1 - var(--depth-index) * 0.14);
+  transform: translateZ(calc(var(--depth-index) * -76px))
+    scale(calc(1 - var(--depth-index) * 0.03));
+}
+
+.layer:first-child {
+  border-color: var(--accent);
+  background-image: linear-gradient(150deg, var(--accent-muted), transparent 62%),
+    var(--plane);
+}
+
+.layer:first-child::before {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border-radius: 14px;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(circle at 30% 25%, #000, transparent 72%);
+}
+
+.label {
+  position: relative;
+  font-size: var(--text-md);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.tech {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+  color: var(--text-tertiary);
+}
+
+.layer:first-child .label {
+  color: var(--accent);
+}
+
+@media (max-width: 1024px) {
+  .scene {
+    min-height: 340px;
+  }
+}
+
+@media (max-width: 520px) {
+  .scene {
+    min-height: 280px;
+  }
+
+  .stack {
+    width: 190px;
+  }
+
+  .layer {
+    padding: 12px 14px;
+    border-radius: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene {
+    animation: none;
+  }
+}

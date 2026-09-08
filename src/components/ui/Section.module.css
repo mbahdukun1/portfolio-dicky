@@ -1,0 +1,138 @@
+.section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: var(--space-10);
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+}
+
+.sunken {
+  background-color: var(--sunken-veil);
+}
+
+.body {
+  position: relative;
+  z-index: 1;
+}
+
+.pattern {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.beam {
+  background: linear-gradient(180deg, var(--accent-muted), transparent 46%);
+  opacity: 0.7;
+}
+
+.stripes {
+  background-image: repeating-linear-gradient(
+    128deg,
+    var(--grid-line) 0 1px,
+    transparent 1px 16px
+  );
+  mask-image: radial-gradient(ellipse 90% 70% at 85% 0%, #000, transparent 76%);
+}
+
+.rules {
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--grid-line) 0 1px,
+    transparent 1px 104px
+  );
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 72%);
+}
+
+.dots {
+  background-image: radial-gradient(var(--grid-line) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse 80% 80% at 20% 10%, #000, transparent 72%);
+}
+
+.rings {
+  background-image: repeating-radial-gradient(
+    circle at 88% 12%,
+    var(--grid-line) 0 1px,
+    transparent 1px 52px
+  );
+  mask-image: radial-gradient(circle at 88% 12%, #000, transparent 68%);
+}
+
+.glow {
+  background: radial-gradient(
+    70% 90% at 50% 108%,
+    var(--accent-muted),
+    transparent 72%
+  );
+}
+
+.spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--glow-on, 0);
+  transition: opacity var(--duration-slow) var(--ease-out);
+  background: radial-gradient(
+    460px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    var(--accent-muted),
+    transparent 68%
+  );
+}
+
+.header {
+  max-width: 62ch;
+  margin-bottom: var(--space-8);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.rule {
+  width: 28px;
+  height: 1px;
+  background-color: var(--accent);
+}
+
+.title {
+  font-size: var(--text-2xl);
+  letter-spacing: -0.02em;
+}
+
+.description {
+  margin-top: var(--space-4);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: var(--space-9);
+  }
+
+  .header {
+    margin-bottom: var(--space-6);
+  }
+}

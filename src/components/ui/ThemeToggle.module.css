@@ -1,0 +1,38 @@
+.toggle {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background-color: var(--surface-translucent);
+  backdrop-filter: blur(12px) saturate(160%);
+  color: var(--text-secondary);
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.icons {
+  display: grid;
+  height: 17px;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.icons > * {
+  grid-area: 1 / 1;
+}
+
+.icons > *:last-child {
+  transform: translateY(28px);
+}
+
+.icons[data-theme-state='light'] {
+  transform: translateY(-28px);
+}

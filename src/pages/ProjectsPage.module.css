@@ -1,0 +1,92 @@
+.body {
+  position: relative;
+  padding-block: var(--space-8) var(--space-10);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.42rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background-color: var(--surface);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+.chip:hover {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
+.chipActive {
+  border-color: var(--accent);
+  background-color: var(--accent-muted);
+  color: var(--accent);
+}
+
+.chipCount {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+.chipActive .chipCount {
+  color: var(--accent);
+}
+
+.count {
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-5);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: var(--space-4);
+}
+
+.outro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: var(--space-9);
+  padding-top: var(--space-6);
+  border-top: 1px dashed var(--border);
+}
+
+.outroText {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+}
+
+.outroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+@media (max-width: 560px) {
+  .outro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

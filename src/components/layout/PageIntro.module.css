@@ -1,0 +1,118 @@
+.intro {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-top: calc(var(--header-height) + var(--space-8));
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid var(--border);
+}
+
+.pattern {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--glow);
+}
+
+.pattern::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--grid-line) 0 1px,
+    transparent 1px 104px
+  );
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 80%);
+}
+
+.body {
+  position: relative;
+  z-index: 1;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.back:hover {
+  color: var(--accent);
+}
+
+.backIcon {
+  transform: rotate(-135deg);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.rule {
+  width: 28px;
+  height: 1px;
+  background-color: var(--accent);
+}
+
+.title {
+  max-width: 20ch;
+  margin-top: var(--space-4);
+  font-size: var(--text-3xl);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.03em;
+}
+
+.lede {
+  max-width: 62ch;
+  margin-top: var(--space-5);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-8);
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px dashed var(--border);
+}
+
+.meta dt {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.meta dd {
+  margin-top: var(--space-2);
+  font-size: var(--text-xl);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+@media (max-width: 640px) {
+  .intro {
+    padding-top: calc(var(--header-height) + var(--space-6));
+    padding-bottom: var(--space-7);
+  }
+}

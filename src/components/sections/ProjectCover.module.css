@@ -1,0 +1,128 @@
+.cover {
+  position: relative;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background-color: var(--bg-sunken);
+  border: 1px solid var(--border);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.stack {
+  overflow: visible;
+  border: none;
+  background-color: transparent;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-sunken);
+  cursor: pointer;
+  z-index: calc(10 - var(--layer));
+  transition:
+    transform var(--duration-slow) var(--ease-out),
+    left var(--duration-slow) var(--ease-out),
+    top var(--duration-slow) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
+}
+
+.stack .layer {
+  inset: auto;
+  left: calc(var(--layer) * 20%);
+  top: calc(28% - var(--layer) * 28%);
+  width: 80%;
+  aspect-ratio: 2 / 1;
+  transform: scale(calc(1 - var(--layer) * 0.06));
+}
+
+.front {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 0 1px var(--accent-muted),
+    var(--lift-shadow);
+}
+
+.stack .layer:not(.front) {
+  background-color: var(--surface);
+  box-shadow:
+    0 0 0 1px var(--border),
+    var(--shadow-md);
+}
+
+.stack .layer:not(.front)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--bg-sunken);
+  opacity: 0.22;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.stack .layer:not(.front):hover {
+  border-color: var(--accent);
+  transform: translateY(-12px) scale(calc(1 - var(--layer) * 0.02));
+}
+
+.stack .layer:not(.front):hover::after {
+  opacity: 0.1;
+}
+
+.generated {
+  display: grid;
+  place-items: center;
+  background-image: linear-gradient(
+    calc(120deg + var(--variant) * 32deg),
+    var(--accent-muted),
+    transparent 58%
+  );
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: calc(22px + var(--variant) * 6px) calc(22px + var(--variant) * 6px);
+  mask-image: radial-gradient(circle at 30% 20%, #000, transparent 78%);
+}
+
+.mark {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  opacity: 0.85;
+}
+
+.tag {
+  position: absolute;
+  left: var(--space-4);
+  bottom: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer {
+    transition-duration: 1ms;
+  }
+}

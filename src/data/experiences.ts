@@ -1,0 +1,233 @@
+import type { Experience } from '@/types/portfolio';
+
+export const experiences: Experience[] = [
+  {
+    id: 'motor-sights',
+    company: 'Motor Sights International',
+    role: 'Full Stack Developer',
+    start: '2025-12',
+    end: null,
+    location: 'Jakarta, Indonesia',
+    employmentType: 'Full-time',
+    track: 'software',
+    chapter: 'Designing before building',
+    summary:
+      'Architecture and delivery lead for upcoming products, from the first technical discussion through to the servers the release runs on.',
+    story: [
+      'The role starts before any code does. Products in the pipeline arrive as a problem statement, and the first job is turning that into an architecture the team can build against: services, boundaries, data flow, and the reasoning behind each choice.',
+      'Most of that happens in conversation. I lead the technical discussions where complex system requirements get pulled apart and refined, then sit with the System Analyst team to turn the outcome into Technical Design Documents and project blueprints other people can work from.',
+      'Planning does not stay inside engineering. Brainstorming and planning sessions run across departments so delivery stays aligned at every stage of a project, and I keep bringing ideas back into those rooms: workflows worth optimising, technical bottlenecks worth resolving before they harden into the design.',
+      'The last stretch is infrastructure. Server maintenance and semi-DevOps deployments across development, staging, and production are mine too, which means the architecture I sketch at the start is one I have to stand behind at release.',
+    ],
+    achievements: [
+      'Conceptualise and design end-to-end application architectures for upcoming development projects.',
+      'Lead technical discussions with the team to define and refine complex system requirements.',
+      'Work across departments in planning and brainstorming sessions to keep delivery aligned at every project stage.',
+      'Partner with the System Analyst team to produce Technical Design Documents (TDD) and project blueprints.',
+      'Contribute proactive ideas during project discussions to optimise workflows and resolve technical bottlenecks.',
+      'Handle server maintenance and semi-DevOps deployments across development, staging, and production environments.',
+    ],
+    stack: ['System Architecture', 'TDD', 'DevOps', 'Server Maintenance', 'Full Stack'],
+  },
+  {
+    id: 'k-appraisal',
+    company: 'KJPP Karmanto dan Rekan (K-Appraisal)',
+    role: 'Full Stack Developer',
+    start: '2025-09',
+    end: '2025-12',
+    location: 'Jakarta, Indonesia',
+    employmentType: 'Full-time',
+    track: 'software',
+    chapter: 'Legacy, rewritten',
+    summary:
+      'Moved a valuation firm off legacy processes and onto modern digital workflows, owning each application from schema to screen.',
+    story: [
+      'A valuation firm running on legacy systems: processes that worked, understood by the people who had always used them, and increasingly expensive to keep alive. The brief was to move the firm onto modern digital workflows without losing what already worked.',
+      'I reimplemented those systems with a full-stack approach and architected the replacements to scale: frontend, backend, and database designed together rather than bolted on. Each application was built and then presented to the people who would use it.',
+      'It is also where .NET and C# went from familiar to fluent. Back-end services and API development in that stack became the backbone of everything delivered here.',
+    ],
+    achievements: [
+      'Reimplemented legacy systems as modern digital workflows using a full-stack approach.',
+      'Designed, developed, and presented end-user web applications from database to interface.',
+      'Architected and built scalable web applications spanning frontend, backend, and database.',
+      'Deepened .NET and C# expertise for back-end services and API development.',
+    ],
+    stack: ['.NET', 'C#', 'REST API', 'SQL', 'Frontend'],
+  },
+  {
+    id: 'beone',
+    company: 'BEONE SOLUTION — PT Beone Optima Solusi',
+    role: 'Full Stack Developer',
+    start: '2023-09',
+    end: '2025-08',
+    location: 'Indonesia',
+    employmentType: 'Full-time',
+    track: 'software',
+    chapter: 'Two years at scale',
+    summary:
+      'Two years on a microservices e-invoicing platform: mobile app, payment gateway, real-time backend, and SAP ↔ DJP tax integration.',
+    story: [
+      'The longest chapter so far, and the one where the systems got big. The product was a mobile application acting as an electronic invoice, billing and payment in a single flow, sitting on a microservices architecture I designed for scalability, reliability, and maintainability under high traffic.',
+      'The work ran across the whole stack. RESTful APIs designed with cross-functional teams to join frontend to backend. A payment gateway integrated so end-user transactions stayed secure and seamless. Backend services optimised for real-time data processing and high availability. A frontend interface built with modern frameworks and held to performance and accessibility standards.',
+      'Load was the constant question. I ran performance testing and tuned components to survive high concurrency, and kept documentation for the system architecture, processes, and workflows current, so the answers lived somewhere other than in my head.',
+      'Running alongside the platform was the integration work: connecting SAP with DJP (Direktorat Jenderal Pajak) through automated exchange and synchronisation, so tax reporting stayed accurate and compliant without anyone re-keying a thing.',
+    ],
+    achievements: [
+      'Built a mobile application acting as an electronic invoice, streamlining billing and payment.',
+      'Designed a microservices-based architecture for scalability, reliability, and maintainability under high traffic.',
+      'Integrated a payment gateway for secure, seamless transactions.',
+      'Optimised backend services for real-time data processing and high availability.',
+      'Designed and implemented RESTful APIs with cross-functional teams to connect frontend and backend.',
+      'Built the frontend interface with modern frameworks, tuned for performance and accessibility.',
+      'Ran performance testing and tuned components to handle high concurrency.',
+      'Maintained documentation for system architecture, processes, and workflows.',
+      'Integrated data between systems: connected SAP with DJP (Direktorat Jenderal Pajak) through automated exchange and synchronisation for accurate tax reporting and compliance.',
+    ],
+    stack: [
+      'Microservices',
+      'Node.js',
+      'REST API',
+      'Payment Gateway',
+      'Mobile App',
+      'SAP Integration',
+      'PostgreSQL',
+    ],
+  },
+  {
+    id: 'cerberus',
+    company: 'Cerberus Technology Solutions',
+    role: 'Full Stack Engineer',
+    start: '2023-07',
+    end: '2023-08',
+    location: 'Jakarta, Indonesia',
+    employmentType: 'Contract',
+    track: 'software',
+    chapter: 'A short contract',
+    summary:
+      'Short full-stack engagement delivering application features across frontend and backend.',
+    story: [
+      'Two months on contract, sitting between a back-end role and the platform work that came after.',
+      'Full-stack application work on client projects, moving across frontend and backend as each one needed it.',
+    ],
+    achievements: [
+      'Delivered full-stack application work across the frontend and backend of client projects.',
+    ],
+    stack: ['JavaScript', 'Full Stack'],
+  },
+  {
+    id: 'sagara',
+    company: 'Sagara Technology',
+    role: 'Back End Engineer',
+    start: '2022-11',
+    end: '2023-02',
+    location: 'Jakarta, Indonesia',
+    employmentType: 'Full-time',
+    track: 'software',
+    chapter: "Someone else's codebase",
+    summary:
+      'Extended an existing HRIS product with new features and wired the client up to the server.',
+    story: [
+      'Sagara put me on an existing HRIS project rather than a blank repository — the harder exercise, and the more useful one. New features had to fit an architecture I had not written, inside a product already in use.',
+      'The work ran from server to screen: building the features, connecting the server with the client application, and then presenting what shipped to the users themselves.',
+    ],
+    achievements: [
+      'Developed additional features on top of an existing HRIS project.',
+      'Presented delivered features to users and connected the server with the client application.',
+    ],
+    stack: ['Node.js', 'REST API', 'HRIS', 'PostgreSQL'],
+  },
+  {
+    id: 'reycom-rpa',
+    company: 'PT Reycom Document Solusi',
+    role: 'RPA Developer',
+    start: '2021-12',
+    end: '2022-05',
+    location: 'Jakarta, Indonesia',
+    employmentType: 'Full-time',
+    track: 'software',
+    chapter: 'The first build',
+    summary:
+      'Built and maintained automation bots that replaced repetitive internal processes.',
+    story: [
+      'The first properly technical role, and an unglamorous way in: repetitive internal processes mapped out, then rebuilt as Automation Anywhere bots that followed the company’s own process requirements step for step.',
+      'Building them was only half the job. Bots break the moment the systems around them shift, so maintenance and troubleshooting became the ongoing work: keeping the automation alive in production rather than demonstrating it once and walking away.',
+    ],
+    achievements: [
+      'Developed bots with Automation Anywhere according to company process requirements.',
+      'Performed maintenance and troubleshooting to keep the bots running in production.',
+    ],
+    stack: ['Automation Anywhere', 'RPA', 'Process Automation'],
+  },
+  {
+    id: 'reycom-data',
+    company: 'PT Reycom Document Solusi',
+    role: 'Data Entry Specialist',
+    start: '2021-10',
+    end: '2021-12',
+    location: 'Jakarta, Indonesia',
+    employmentType: 'Full-time',
+    track: 'earlier',
+    chapter: 'Where the door opened',
+    summary: 'Data ingestion into company database servers against daily targets.',
+    story: [
+      'Before writing the bots, I was the process: retrieving data and importing it into the company’s database server, working to daily input targets. Two months of seeing, first-hand, exactly which parts of a job a machine ought to be doing instead.',
+    ],
+    achievements: [
+      "Retrieved and imported data into the company's database server.",
+      'Worked to daily input targets.',
+    ],
+    stack: ['Data Entry', 'Database'],
+  },
+  {
+    id: 'kiki-tech',
+    company: 'Kiki Tech PTE. LTD',
+    role: 'Ambassador',
+    start: '2021-01',
+    end: '2021-08',
+    location: 'Jakarta, Indonesia',
+    employmentType: 'Part-time',
+    track: 'earlier',
+    chapter: 'Talking about the product',
+    summary: 'Represented the company and its products to a wider audience.',
+    story: [
+      'A part-time role promoting the company and handling product branding. Not engineering, but the first practice at explaining something to the people who did not build it, which turned out to be most of the job later on.',
+    ],
+    achievements: ['Promoted the company and handled product branding activities.'],
+    stack: ['Branding', 'Communication'],
+  },
+  {
+    id: 'astra-daihatsu',
+    company: 'PT Astra International Tbk — Daihatsu Sales Operation',
+    role: 'Mechanical Engineer',
+    start: '2017-01',
+    end: '2017-03',
+    location: 'Jakarta, Indonesia',
+    employmentType: 'Internship',
+    track: 'earlier',
+    chapter: 'Before software',
+    summary:
+      'Pre-software chapter: vehicle inspection and repair on the Daihatsu sales operation floor.',
+    story: [
+      'The pre-software chapter, on the Daihatsu sales operation floor. Regular vehicle checks to keep units in good condition, and diagnosis of damaged parts — deciding, each time, whether the thing in front of me should be repaired or replaced.',
+      'It is the same instinct debugging asks for. Heavier tools, that is all.',
+    ],
+    achievements: [
+      'Performed regular vehicle checks to keep units in good condition.',
+      'Diagnosed damaged parts and decided between repair and replacement.',
+    ],
+    stack: ['Diagnostics', 'Maintenance'],
+  },
+];
+
+/** Engineering roles, newest first — the timeline everywhere on the site. */
+export const softwareExperiences: Experience[] = experiences.filter(
+  (item) => item.track === 'software',
+);
+
+/** Pre-software roles, kept out of the main timeline. */
+export const earlierExperiences: Experience[] = experiences.filter(
+  (item) => item.track === 'earlier',
+);
+
+/** The condensed set shown on the home page — the rest live on /experience. */
+export const recentExperiences: Experience[] = softwareExperiences.slice(0, 3);

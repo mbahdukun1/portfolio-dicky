@@ -1,0 +1,101 @@
+.scene {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding-block: var(--space-4);
+  perspective: 1400px;
+  opacity: var(--enter, 1);
+}
+
+.glow {
+  position: absolute;
+  bottom: 6%;
+  width: 84%;
+  height: 62%;
+  border-radius: 50%;
+  background: var(--aura-a);
+  filter: blur(46px);
+  opacity: 0.9;
+}
+
+.stage {
+  position: relative;
+  width: clamp(230px, 25vw, 310px);
+  transform: translateY(calc((1 - var(--enter, 1)) * 26px))
+    rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transform-style: preserve-3d;
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.outline {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--accent);
+  border-radius: 999px 999px var(--radius-lg) var(--radius-lg);
+  opacity: 0.42;
+  transform: translate3d(18px, 18px, -30px);
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px 999px var(--radius-lg) var(--radius-lg);
+  background-color: var(--surface);
+  background-image: var(--plane);
+  box-shadow:
+    inset 0 1px 0 var(--sheen),
+    var(--lift-shadow);
+}
+
+.photo {
+  position: absolute;
+  left: var(--photo-x, -21%);
+  top: var(--photo-y, -9%);
+  width: var(--photo-zoom, 136%);
+  height: auto;
+  max-width: none;
+}
+
+.scrim {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 42%;
+  background: linear-gradient(to top, var(--bg) 4%, transparent 100%);
+  opacity: 0.55;
+}
+
+.fallback {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  font-family: var(--font-mono);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  background-image:
+    radial-gradient(circle at 50% 34%, var(--accent-muted), transparent 62%),
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    26px 26px,
+    26px 26px;
+}
+
+@media (max-width: 1024px) {
+  .stage {
+    width: 260px;
+  }
+}
+
+@media (max-width: 520px) {
+  .stage {
+    width: 210px;
+  }
+
+  .outline {
+    transform: translate3d(12px, 12px, -30px);
+  }
+}

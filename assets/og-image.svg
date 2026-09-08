@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1114" />
+      <stop offset="1" stop-color="#080a0d" />
+    </linearGradient>
+    <radialGradient id="glow" cx="0.72" cy="0.18" r="0.7">
+      <stop offset="0" stop-color="#2dd4bf" stop-opacity="0.28" />
+      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="68" height="68" patternUnits="userSpaceOnUse">
+      <path d="M68 0H0V68" fill="none" stroke="#ffffff" stroke-opacity="0.045" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#grid)" />
+  <rect width="1200" height="630" fill="url(#glow)" />
+
+  <g transform="translate(880 300)">
+    <circle r="150" fill="none" stroke="#2dd4bf" stroke-opacity="0.35" stroke-width="1.5" />
+    <ellipse rx="205" ry="72" fill="none" stroke="#ffffff" stroke-opacity="0.16" stroke-width="1.5" transform="rotate(-24)" />
+    <ellipse rx="230" ry="94" fill="none" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1.5" transform="rotate(28)" />
+    <circle r="120" fill="#12161c" stroke="#2dd4bf" stroke-opacity="0.5" stroke-width="2" />
+    <text x="0" y="26" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="76" font-weight="600" fill="#2dd4bf" letter-spacing="4">DM</text>
+    <circle cx="205" cy="-92" r="9" fill="#2dd4bf" />
+  </g>
+
+  <g transform="translate(90 208)">
+    <rect x="0" y="-46" width="46" height="3" fill="#2dd4bf" />
+    <text x="0" y="0" font-family="Segoe UI, Arial, sans-serif" font-size="76" font-weight="700" fill="#e9ecef" letter-spacing="-2">Dicky Maulana</text>
+    <text x="0" y="56" font-family="Consolas, Courier New, monospace" font-size="27" fill="#2dd4bf" letter-spacing="1">Software Engineer · Full Stack Developer</text>
+    <text x="0" y="132" font-family="Segoe UI, Arial, sans-serif" font-size="25" fill="#a8b0bb">Web, mobile, microservices, and system</text>
+    <text x="0" y="170" font-family="Segoe UI, Arial, sans-serif" font-size="25" fill="#a8b0bb">integration — built end to end.</text>
+    <text x="0" y="248" font-family="Consolas, Courier New, monospace" font-size="21" fill="#6f7885">Jakarta, Indonesia</text>
+    <text x="260" y="248" font-family="Consolas, Courier New, monospace" font-size="21" fill="#6f7885">dicmaulana09@gmail.com</text>
+  </g>
+</svg>

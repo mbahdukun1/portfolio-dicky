@@ -1,0 +1,59 @@
+.card {
+  position: relative;
+  padding: var(--card-padding, var(--space-5));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface);
+  background-image: var(--plane);
+  box-shadow:
+    inset 0 1px 0 var(--sheen),
+    var(--shadow-sm);
+  transition:
+    border-color var(--duration-base) var(--ease-out),
+    background-color var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.card:hover {
+  transition-delay: 0ms;
+}
+
+.interactive:hover {
+  border-color: var(--border-strong);
+  background-color: var(--surface-hover);
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 1px 0 var(--sheen-strong),
+    var(--lift-shadow);
+}
+
+.card.tilt {
+  transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg))
+    translate3d(0, var(--reveal-shift, 20px), 0);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.card.tilt:hover {
+  border-color: var(--border-strong);
+  box-shadow:
+    inset 0 1px 0 var(--sheen-strong),
+    var(--lift-shadow);
+}
+
+.sheen {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: var(--tilt-active, 0);
+  transition: opacity var(--duration-base) var(--ease-out);
+  background: radial-gradient(
+    320px circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+    var(--accent-muted),
+    transparent 68%
+  );
+}

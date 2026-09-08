@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting…</title>
+    <script>
+      // Static hosts without SPA rewrites (GitHub Pages, plain S3) serve this file for
+      // /projects and /experience. Stash the requested route, hand back to the app shell,
+      // and index.html restores it before React mounts.
+      // Serving from a subpath? Set ROOT to it, e.g. '/portfolio/'.
+      (function () {
+        var ROOT = '/';
+        try {
+          sessionStorage.setItem(
+            'dm-portfolio-redirect',
+            location.pathname + location.search + location.hash,
+          );
+        } catch (error) {}
+        location.replace(ROOT);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
