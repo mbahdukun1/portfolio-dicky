@@ -10,6 +10,8 @@ interface LinkProps {
   onClick?: () => void;
   ariaLabel?: string;
   ariaCurrent?: 'page' | 'true';
+  /** Marks the link so a parent can measure it, e.g. the sliding nav pill. */
+  dataActive?: 'true';
 }
 
 /**
@@ -23,6 +25,7 @@ export function Link({
   onClick,
   ariaLabel,
   ariaCurrent,
+  dataActive,
 }: LinkProps) {
   const { navigate } = useRouter();
 
@@ -50,6 +53,7 @@ export function Link({
       onClick={handleClick}
       aria-label={ariaLabel}
       aria-current={ariaCurrent}
+      data-active={dataActive}
     >
       {children}
     </a>

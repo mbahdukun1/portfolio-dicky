@@ -5,6 +5,7 @@ import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { findCaseStudy } from '@/data/caseStudies';
+import { absoluteUrl } from '@/data/site';
 import { useReveal } from '@/hooks/useReveal';
 import { useRouter } from '@/hooks/useRouter';
 import { CaseStudyPage } from '@/pages/CaseStudyPage';
@@ -51,6 +52,15 @@ export default function App() {
 
   useEffect(() => {
     document.title = titleFor(path);
+
+    // Every route is served from index.html, so the canonical tag has to follow
+    // the router — otherwise each page claims to be the home page.
+    const url = absoluteUrl(path);
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    const ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]');
+
+    if (canonical) canonical.href = url;
+    if (ogUrl) ogUrl.content = url;
   }, [path]);
 
   return (

@@ -13,11 +13,6 @@ export function PortraitArch() {
 
   useEnterAnimation(sceneRef, 1000);
 
-  const initials = profile.name
-    .split(' ')
-    .map((part) => part[0])
-    .join('');
-
   return (
     <div className={styles.scene} ref={sceneRef}>
       <span className={styles.glow} aria-hidden="true" />
@@ -28,7 +23,7 @@ export function PortraitArch() {
         <div className={styles.frame}>
           {imageFailed ? (
             <span className={styles.fallback} aria-hidden="true">
-              {initials}
+              &gt;_
             </span>
           ) : (
             <img

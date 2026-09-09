@@ -16,11 +16,12 @@
 
 .brand {
   display: inline-flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: 5px 14px 5px 5px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  padding: 6px 16px;
   border: 1px solid transparent;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-lg);
   transition:
     border-color var(--duration-base) var(--ease-out),
     background-color var(--duration-base) var(--ease-out);
@@ -32,23 +33,47 @@
   backdrop-filter: blur(12px) saturate(160%);
 }
 
-.monogram {
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: var(--radius-full);
-  background-color: var(--accent);
-  color: var(--accent-contrast);
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 500;
-}
-
+/* Two-line lockup: name on top, role as a mono eyebrow — keeps the brand
+   narrow enough to clear the centred nav pill. */
 .brandName {
   font-size: var(--text-base);
-  font-weight: 600;
-  letter-spacing: -0.015em;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.brandFirst {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.brandLast {
+  color: var(--text-tertiary);
+  font-weight: 400;
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+.brandLast::before {
+  content: ' ';
+}
+
+.brand:hover .brandLast {
+  color: var(--text-secondary);
+}
+
+.brandRole {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  line-height: 1.1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--text-tertiary);
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+.brand:hover .brandRole {
+  color: var(--accent);
 }
 
 .nav {
@@ -58,6 +83,7 @@
 }
 
 .navList {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 2px;
@@ -69,7 +95,24 @@
   box-shadow: var(--shadow-sm);
 }
 
+/* One pill that slides between links; it is measured in Header.tsx. */
+.navIndicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--radius-full);
+  background-color: var(--accent-muted);
+  pointer-events: none;
+}
+
+.navIndicatorSlide {
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    width var(--duration-base) var(--ease-out);
+}
+
 .navLink {
+  position: relative;
   display: inline-flex;
   padding: 0.4rem 0.85rem;
   border-radius: var(--radius-full);
@@ -85,9 +128,10 @@
   background-color: var(--surface-hover);
 }
 
-.navActive {
+.navActive,
+.navActive:hover {
   color: var(--accent);
-  background-color: var(--accent-muted);
+  background-color: transparent;
 }
 
 .actions {
@@ -198,6 +242,13 @@
   word-break: break-all;
 }
 
+/* Between these widths the centred nav pill leaves no room beside the name. */
+@media (min-width: 1025px) and (max-width: 1199px) {
+  .brandRole {
+    display: none;
+  }
+}
+
 @media (max-width: 1024px) {
   .nav {
     display: none;
@@ -217,11 +268,11 @@
 }
 
 @media (max-width: 420px) {
-  .brandName {
+  .brandRole {
     display: none;
   }
 
   .brand {
-    padding-right: 5px;
+    padding-inline: 12px;
   }
 }

@@ -1,7 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#0f766e" />
+  <defs>
+    <linearGradient id="mark" x1="10" y1="8" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5eead4" />
+      <stop offset="1" stop-color="#0f766e" />
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="16" fill="#0b0d10" />
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="none" stroke="url(#mark)" stroke-width="2" opacity="0.5" />
+
   <path
-    d="M18 18h11c9.4 0 15.5 5.4 15.5 14s-6.1 14-15.5 14H18V18zm7.6 6.6v14.8H29c5 0 8.2-2.9 8.2-7.4s-3.2-7.4-8.2-7.4h-3.4z"
-    fill="#f0fdf9"
-  />
+    d="M19 21.5 29.5 32 19 42.5"
+    fill="none"
+    stroke="url(#mark)"
+    stroke-width="6"
+    stroke-linecap="round"
+    stroke-linejoin="round" />
+  <path
+    d="M34.5 43.5h11"
+    fill="none"
+    stroke="#2dd4bf"
+    stroke-width="6"
+    stroke-linecap="round" />
 </svg>
