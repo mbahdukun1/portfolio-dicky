@@ -4,7 +4,7 @@ const base = '/projects/mamapa';
 
 export const mamapaCase: CaseStudy = {
   slug: 'mamapa',
-  title: 'mamAPA — Recipe App with AI',
+  title: 'mamAPA - Recipe App',
   context: 'Personal project',
   period: '2023',
   role: 'Full-stack & mobile developer',

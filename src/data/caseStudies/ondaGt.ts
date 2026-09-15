@@ -4,7 +4,7 @@ const base = '/projects/onda-gt';
 
 export const ondaGtCase: CaseStudy = {
   slug: 'onda-gt',
-  title: 'Onda Goods Tracker — Warehouse Scanner',
+  title: 'Onda GT - Warehouse Scanner App',
   context: 'BEONE SOLUTION x Onda',
   period: '2023 — 2025',
   role: 'Mobile & integration engineer',

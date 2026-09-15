@@ -22,7 +22,12 @@ export const stack: ColophonEntry[] = [
   },
   {
     name: 'anime.js',
-    detail: 'The only runtime dependency past React — used for the hero sequence.',
+    detail: 'Drives the hero sequence and the scroll-in motion.',
+  },
+  {
+    name: 'three.js',
+    detail:
+      'Four small scenes — the stack in About, the system map and device viewer in case studies, and the 404. Lazy-loaded, desktop only, and skipped entirely under reduced motion.',
   },
   {
     name: 'Inter + JetBrains Mono',

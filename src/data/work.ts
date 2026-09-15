@@ -1,10 +1,11 @@
+import { comingSoonSettings } from '@/data/settings';
 import type { WorkItem } from '@/types/portfolio';
 
-export const workItems: WorkItem[] = [
+const entries: WorkItem[] = [
   {
     id: 'wms',
     featured: true,
-    title: 'WMS — Warehouse Management System',
+    title: 'WMS - Warehouse Management System (Web Based)',
     context: 'Inline Technology · PT Motor Sights International',
     period: '2026',
     description:
@@ -36,7 +37,7 @@ export const workItems: WorkItem[] = [
   },
   {
     id: 'wms-mobile',
-    title: 'WMS Mobile — Offline-First Warehouse App',
+    title: 'WMS - Mobile Warehouse App',
     context: 'Inline Technology · PT Motor Sights International',
     period: '2026',
     description:
@@ -53,7 +54,7 @@ export const workItems: WorkItem[] = [
   },
   {
     id: 'work-order',
-    title: 'Work Order — Fleet Maintenance App',
+    title: 'Work Order - Fleet Maintenance App',
     context: 'Inline Technology',
     period: '2026',
     description:
@@ -70,7 +71,7 @@ export const workItems: WorkItem[] = [
   },
   {
     id: 'e-invoice',
-    title: 'E-Invoice Platform',
+    title: 'E-Invoice - Invoicing Platform',
     context: 'BEONE SOLUTION',
     period: '2023 — 2025',
     description:
@@ -87,7 +88,7 @@ export const workItems: WorkItem[] = [
   },
   {
     id: 'onda-gt',
-    title: 'Onda Goods Tracker',
+    title: 'Onda GT - Warehouse Scanner App',
     context: 'BEONE SOLUTION x Onda',
     period: '2023 — 2025',
     description:
@@ -104,7 +105,7 @@ export const workItems: WorkItem[] = [
   },
   {
     id: 'mamapa',
-    title: 'mamAPA — Recipe App with AI',
+    title: 'mamAPA - Recipe App',
     context: 'Personal project',
     period: '2023',
     description:
@@ -119,7 +120,7 @@ export const workItems: WorkItem[] = [
   },
   {
     id: 'anniversary',
-    title: 'Anniversary — A Page as a Gift',
+    title: 'Anniversary - Personal Web Page',
     context: 'Personal project',
     period: '2026',
     description:
@@ -136,7 +137,7 @@ export const workItems: WorkItem[] = [
   {
     id: 'travelaku',
     comingSoon: true,
-    title: 'Travelaku — Visit Indonesia',
+    title: 'Travelaku - Travel App',
     context: 'Personal project',
     period: '2024',
     description: 'A travel platform for exploring Indonesia, from the islands to the itinerary.',
@@ -147,7 +148,7 @@ export const workItems: WorkItem[] = [
   {
     id: 'healthcare-automation',
     comingSoon: true,
-    title: 'Healthcare Workflow Automation',
+    title: 'Healthcare - Workflow Automation',
     context: 'Personal project',
     period: '2025',
     description:
@@ -157,18 +158,71 @@ export const workItems: WorkItem[] = [
     images: ['/projects/healthcare/cover.webp'],
   },
   {
+    id: 'barcode-system',
+    title: 'Ruby Barcode System - Label Printing App',
+    context: 'BEONE SOLUTION',
+    period: '2023 — 2025',
+    description:
+      'A Flutter desktop app for printing barcode price labels in bulk: bring in items and prices from SAP Business One or a spreadsheet, pick what needs a label, and send it to the label printer.',
+    contributions: [
+      'Built the desktop app in Flutter, from sign-in through to printing.',
+      'Integrated with SAP Business One so items and price lists are fetched straight from the ERP through a Data Sync & API dialog.',
+      'Built Excel import for the full catalogue or a selection file, handling around 30,000 rows and keeping the table on the device as JSON.',
+      'Built a searchable, paginated item table with select all, show selected, and a selection saved automatically as it changes.',
+      'Built printer settings — label preset, paper size, columns, orientation — with a live preview of the label being printed.',
+      'Tied sign-in to a device ID and surfaced the printer connection status in the header.',
+    ],
+    stack: ['Flutter', 'Desktop App', 'SAP', 'System Integration', 'Barcode Printing', 'Excel Import'],
+    images: [
+      '/projects/barcode/catalogue.webp',
+      '/projects/barcode/data-sync.webp',
+      '/projects/barcode/selection.webp',
+      '/projects/barcode/login.webp',
+    ],
+  },
+  {
+    id: 'sap-addon-dongjin',
+    title: 'DongJin - SAP Integration Add-on',
+    context: 'BEONE SOLUTION x PT DongJin',
+    period: '2023 — 2025',
+    description: 'An integration add-on built on top of SAP for PT DongJin.',
+    contributions: [],
+    stack: ['SAP', 'SAP Add-on', 'System Integration'],
+  },
+  {
+    id: 'kjpp-hris',
+    title: 'K-Appraisal HRIS - HR Information System',
+    context: 'KJPP Karmanto dan Rekan',
+    period: '2025',
+    description: 'An HR information system built for KJPP Karmanto dan Rekan.',
+    contributions: [],
+    stack: ['React', 'TypeScript', 'Sequelize ORM', 'HRIS'],
+  },
+  {
+    id: 'kjpp-data-pembanding',
+    title: 'K-Appraisal Data Pembanding - Comparable Data System',
+    context: 'KJPP Karmanto dan Rekan',
+    period: '2025',
+    description:
+      'A system for the comparable data (data pembanding) that the firm’s property valuations are built on.',
+    contributions: [],
+    stack: ['React', 'TypeScript', 'Web App'],
+  },
+  {
     id: 'sap-djp',
-    title: 'SAP ↔ DJP Tax Integration',
+    title: 'SAP DJP - Tax Integration',
     context: 'BEONE SOLUTION',
     period: '2024 — 2025',
     description:
-      'An automated data exchange between enterprise SAP systems and DJP (Direktorat Jenderal Pajak), keeping tax reporting accurate and compliant without manual re-entry.',
+      'A two-way tax integration between SAP Business One and DJP’s Coretax: documents go from SAP to a Node.js middleware, through Pajak Express to Coretax, and the results come back onto the SAP record.',
     contributions: [
-      'Built the interface layer between SAP and the DJP reporting endpoint.',
-      'Implemented automated exchange and synchronisation of tax data.',
+      'Built the Node.js middleware between SAP Business One and Pajak Express, the gateway that carries tax documents on to Coretax.',
+      'Covered faktur pajak, bukti potong, SPT reporting data, and NPWP/NIK master data validation.',
+      'Wrote Coretax results back into SAP: official document numbers, approval or rejection status, and the issued PDF or QR code.',
+      'Ran the sync on a schedule, with manual send and resend for documents that cannot wait or have just been fixed.',
       'Documented the integration flow for ongoing maintenance.',
     ],
-    stack: ['System Integration', 'SAP', 'Data Sync', 'Compliance'],
+    stack: ['System Integration', 'SAP', 'Node.js', 'Middleware', 'Coretax', 'Pajak Express', 'Compliance'],
   },
   {
     id: 'legacy-modernisation',
@@ -183,7 +237,7 @@ export const workItems: WorkItem[] = [
       'Architected scalable applications across frontend, backend, and database.',
       'Delivered and demonstrated complete web applications to end users.',
     ],
-    stack: ['.NET', 'C#', 'REST API', 'Web App'],
+    stack: ['React', 'TypeScript', 'REST API', 'Web App'],
   },
   {
     id: 'hris',
@@ -287,19 +341,27 @@ export const workItems: WorkItem[] = [
   },
 ];
 
-export const publishedWork: WorkItem[] = workItems.filter((item) => !item.draft);
+export const workItems: WorkItem[] = entries.map((item) =>
+  item.contributions.length === 0 ? { ...item, comingSoon: true } : item,
+);
 
-export const deliveredWork: WorkItem[] = workItems.filter(
+const visibleWork = workItems.filter(
+  (item) => !item.draft && (comingSoonSettings.show || !item.comingSoon),
+);
+
+export const publishedWork: WorkItem[] =
+  comingSoonSettings.placement === 'end'
+    ? [...visibleWork.filter((item) => !item.comingSoon), ...visibleWork.filter((item) => item.comingSoon)]
+    : visibleWork;
+
+export const deliveredWork: WorkItem[] = publishedWork.filter(
   (item) => !item.comingSoon && !item.placeholder,
 );
 
-const upcomingWork: WorkItem[] = publishedWork.filter((item) => item.comingSoon);
+const upcomingWork: WorkItem[] = workItems.filter((item) => !item.draft && item.comingSoon);
 
-const PIPELINE_COUNT = 10;
+export const upcomingCount = comingSoonSettings.showCount ? upcomingWork.length : 0;
 
-export const upcomingCount = Math.max(PIPELINE_COUNT, upcomingWork.length);
-
-/** The hero project on the home page. */
 export const featuredWork: WorkItem | undefined =
   publishedWork.find((item) => item.featured) ?? publishedWork[0];
 

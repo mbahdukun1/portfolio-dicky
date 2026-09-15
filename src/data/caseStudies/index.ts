@@ -1,9 +1,11 @@
 import type { CaseStudy } from '@/types/portfolio';
 
 import { anniversaryCase } from './anniversary';
+import { barcodeSystemCase } from './barcodeSystem';
 import { eInvoiceCase } from './eInvoice';
 import { mamapaCase } from './mamapa';
 import { ondaGtCase } from './ondaGt';
+import { sapDjpCase } from './sapDjp';
 import { wmsCase } from './wms';
 import { wmsMobileCase } from './wmsMobile';
 import { workOrderCase } from './workOrder';
@@ -14,6 +16,8 @@ export const caseStudies: CaseStudy[] = [
   ondaGtCase,
   workOrderCase,
   eInvoiceCase,
+  barcodeSystemCase,
+  sapDjpCase,
   mamapaCase,
   anniversaryCase,
 ];

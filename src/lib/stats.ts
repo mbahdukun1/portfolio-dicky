@@ -1,16 +1,12 @@
+import { caseStudies } from '@/data/caseStudies';
 import { experiences } from '@/data/experiences';
-import { deliveredWork } from '@/data/work';
-import { monthsBetween, yearsSince } from '@/lib/date';
+import { yearsSince } from '@/lib/date';
 import type { Stat } from '@/types/portfolio';
 
 const CAREER_START = '2021-10';
 
-const softwareRoles = experiences.filter((item) => item.track === 'software');
-
-const longestTenure = softwareRoles.reduce(
-  (longest, item) => Math.max(longest, monthsBetween(item.start, item.end)),
-  0,
-);
+const systemsHandled = experiences.reduce((total, item) => total + (item.systems ?? 0), 0);
+const systemsFloor = systemsHandled >= 10 ? Math.floor(systemsHandled / 5) * 5 : systemsHandled;
 
 export const stats: Stat[] = [
   {
@@ -19,14 +15,14 @@ export const stats: Stat[] = [
     detail: 'Since 2021, across product, consultancy, and enterprise teams.',
   },
   {
-    value: `${Math.round(longestTenure / 12)} yrs`,
-    label: 'Longest tenure',
-    detail: 'Two years on one microservices platform, from build to production.',
+    value: String(caseStudies.length),
+    label: 'Case studies',
+    detail: 'Written end to end — the flow, the integrations, and the decisions behind each system.',
   },
   {
-    value: String(deliveredWork.length),
-    label: 'Systems delivered',
-    detail: 'Warehouse platforms, e-invoicing, ERP integration, and mobile field apps.',
+    value: `${systemsFloor}+`,
+    label: 'Systems handled',
+    detail: 'Warehouse platforms, e-invoicing, ERP and tax integrations, and field apps — more than the archive shows.',
   },
   {
     value: '4',

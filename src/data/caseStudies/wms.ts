@@ -4,7 +4,7 @@ const base = '/projects/wms';
 
 export const wmsCase: CaseStudy = {
   slug: 'wms',
-  title: 'WMS — Warehouse Management System',
+  title: 'WMS - Warehouse Management System (Web Based)',
   context: 'Inline Technology · PT Motor Sights International',
   period: '2026',
   role: 'Full-stack engineer',

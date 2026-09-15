@@ -4,7 +4,7 @@ const base = '/projects/wms-mobile';
 
 export const wmsMobileCase: CaseStudy = {
   slug: 'wms-mobile',
-  title: 'WMS Mobile — Offline-First Warehouse App',
+  title: 'WMS - Mobile Warehouse App',
   context: 'Inline Technology · PT Motor Sights International',
   period: '2026',
   role: 'Mobile engineer',

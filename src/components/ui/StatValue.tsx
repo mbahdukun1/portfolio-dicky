@@ -16,11 +16,12 @@ export function StatValue({ value, className }: StatValueProps) {
     const node = ref.current;
     if (!node || prefersReducedMotion()) return;
 
-    const match = value.match(/^(\d+)(.*)$/);
+    const match = value.match(/^(\D*)(\d+)(.*)$/);
     if (!match) return;
 
-    const target = Number(match[1]);
-    const suffix = match[2] ?? '';
+    const prefix = match[1] ?? '';
+    const target = Number(match[2]);
+    const suffix = match[3] ?? '';
     const counter = { current: 0 };
 
     const animation = animate(counter, {
@@ -29,7 +30,7 @@ export function StatValue({ value, className }: StatValueProps) {
       ease: EASE_COUNT,
       autoplay: false,
       onUpdate: () => {
-        node.textContent = `${Math.round(counter.current)}${suffix}`;
+        node.textContent = `${prefix}${Math.round(counter.current)}${suffix}`;
       },
       onComplete: () => {
         node.textContent = value;

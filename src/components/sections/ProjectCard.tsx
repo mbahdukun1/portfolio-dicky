@@ -3,11 +3,24 @@ import { Card } from '@/components/ui/Card';
 import { Icon } from '@/components/ui/Icon';
 import { Link } from '@/components/ui/Link';
 import { hasCaseStudy } from '@/data/caseStudies';
+import { integrations } from '@/data/integrations';
+import { comingSoonSettings } from '@/data/settings';
 import { cn } from '@/lib/cn';
 import type { WorkItem } from '@/types/portfolio';
 
+import { IntegrationMap } from './IntegrationMap';
 import styles from './ProjectCard.module.css';
 import { ProjectCover } from './ProjectCover';
+
+function CardCover({ item, story, className }: { item: WorkItem; story: boolean; className: string }) {
+  const integration = story ? undefined : integrations[item.id];
+
+  if (integration) {
+    return <IntegrationMap map={integration} compact className={cn(className, styles.mapCover)} />;
+  }
+
+  return <ProjectCover item={item} className={className} />;
+}
 
 function ProjectLinks({ item }: { item: WorkItem }) {
   const story = hasCaseStudy(item.id);
@@ -75,7 +88,7 @@ export function ProjectCard({
     <>
       <div className={styles.meta}>
         {isFeatured ? <Badge tone="accent">Featured</Badge> : null}
-        {item.comingSoon ? <Badge tone="accent">Coming soon</Badge> : null}
+        {item.comingSoon ? <Badge tone="accent">{comingSoonSettings.label}</Badge> : null}
         <span className={styles.context}>{item.context}</span>
         <span className={styles.period}>{item.period}</span>
       </div>
@@ -113,7 +126,7 @@ export function ProjectCard({
   if (isFeatured) {
     return (
       <Card tilt className={cn(styles.card, styles.featured, className)}>
-        <ProjectCover item={item} className={styles.featuredCover} />
+        <CardCover item={item} story={story} className={styles.featuredCover} />
         <div className={styles.featuredBody}>{head}</div>
       </Card>
     );
@@ -121,7 +134,7 @@ export function ProjectCard({
 
   return (
     <Card tilt revealDelay={revealDelay} className={cn(styles.card, className)}>
-      <ProjectCover item={item} className={styles.cover} />
+      <CardCover item={item} story={story} className={styles.cover} />
       {head}
     </Card>
   );

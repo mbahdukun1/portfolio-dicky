@@ -134,6 +134,47 @@
   color: var(--text-primary);
 }
 
+.projects {
+  margin-top: var(--space-6);
+}
+
+.projectsLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.projectList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.projectLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-full);
+  background-color: var(--surface);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.projectLink:hover,
+.projectLink:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .details {
   margin-top: var(--space-6);
   border: 1px solid var(--border);

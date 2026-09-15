@@ -30,6 +30,17 @@
   margin-bottom: var(--space-5);
 }
 
+.mapCover {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background:
+    radial-gradient(ellipse 60% 60% at 50% 45%, var(--accent-muted), transparent 72%),
+    var(--bg-sunken);
+}
+
 .meta {
   display: flex;
   flex-wrap: wrap;

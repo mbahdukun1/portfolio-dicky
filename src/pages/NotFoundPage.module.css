@@ -6,8 +6,29 @@
   padding-bottom: var(--space-9);
 }
 
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-8);
+}
+
 .body {
   max-width: 56ch;
+}
+
+.visual {
+  order: 2;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .visual {
+    order: 0;
+  }
 }
 
 .code {

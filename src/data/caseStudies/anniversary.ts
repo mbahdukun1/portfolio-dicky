@@ -4,7 +4,7 @@ const base = '/projects/anniversary';
 
 export const anniversaryCase: CaseStudy = {
   slug: 'anniversary',
-  title: 'Anniversary — A Page as a Gift',
+  title: 'Anniversary - Personal Web Page',
   context: 'Personal project',
   period: '2026',
   role: 'Design & build',

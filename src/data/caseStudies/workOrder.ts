@@ -4,7 +4,7 @@ const base = '/projects/wo';
 
 export const workOrderCase: CaseStudy = {
   slug: 'work-order',
-  title: 'Work Order — Fleet Maintenance App',
+  title: 'Work Order - Fleet Maintenance App',
   context: 'Inline Technology',
   period: '2026',
   role: 'Mobile engineer',

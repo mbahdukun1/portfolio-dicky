@@ -69,6 +69,8 @@ export interface Experience {
   summary: string;
   achievements: string[];
   stack: string[];
+  projects?: string[];
+  systems?: number;
   /** Short label for this chapter of the journey page, e.g. 'The architecture chair'. */
   chapter?: string;
   /** Long-form narrative shown on /experience. One string per paragraph. */

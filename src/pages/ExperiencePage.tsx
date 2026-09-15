@@ -3,16 +3,22 @@ import { PageIntro } from '@/components/layout/PageIntro';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
+import { Link } from '@/components/ui/Link';
+import { hasCaseStudy } from '@/data/caseStudies';
 import { earlierExperiences, experiences, softwareExperiences } from '@/data/experiences';
+import { publishedWork } from '@/data/work';
 import { formatDuration, formatPeriod, monthsBetween } from '@/lib/date';
 import { revealDelay } from '@/lib/style';
-import type { Experience } from '@/types/portfolio';
+import type { Experience, WorkItem } from '@/types/portfolio';
 
 import styles from './ExperiencePage.module.css';
 
 function Chapter({ experience, index }: { experience: Experience; index: number }) {
   const isCurrent = experience.end === null;
   const story = experience.story ?? [experience.summary];
+  const projects = (experience.projects ?? [])
+    .map((id) => publishedWork.find((item) => item.id === id))
+    .filter((item): item is WorkItem => item !== undefined);
 
   return (
     <article
@@ -46,6 +52,11 @@ function Chapter({ experience, index }: { experience: Experience; index: number 
             {experience.location}
           </li>
           <li>{experience.employmentType}</li>
+          {experience.systems ? (
+            <li>
+              {experience.systems} {experience.systems === 1 ? 'system' : 'systems'}
+            </li>
+          ) : null}
         </ul>
 
         <div className={styles.story}>
@@ -53,6 +64,25 @@ function Chapter({ experience, index }: { experience: Experience; index: number 
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
+
+        {projects.length > 0 ? (
+          <div className={styles.projects}>
+            <p className={styles.projectsLabel}>Projects from this role</p>
+            <ul className={styles.projectList}>
+              {projects.map((project) => (
+                <li key={project.id}>
+                  <Link
+                    to={hasCaseStudy(project.id) ? `/projects/${project.id}` : '/projects'}
+                    className={styles.projectLink}
+                  >
+                    {project.title}
+                    <Icon name="arrow-up-right" size={13} />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
 
         <details className={styles.details}>
           <summary className={styles.summary}>

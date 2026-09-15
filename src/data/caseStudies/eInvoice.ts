@@ -4,7 +4,7 @@ const base = '/projects/e-invoice';
 
 export const eInvoiceCase: CaseStudy = {
   slug: 'e-invoice',
-  title: 'E-Invoice Platform',
+  title: 'E-Invoice - Invoicing Platform',
   context: 'BEONE SOLUTION',
   period: '2023 — 2025',
   role: 'Backend & mobile engineer',

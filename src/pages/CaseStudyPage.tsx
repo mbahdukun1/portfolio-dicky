@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { Container } from '@/components/layout/Container';
 import { PageIntro } from '@/components/layout/PageIntro';
+import { IntegrationMap } from '@/components/sections/IntegrationMap';
+import { PhoneShowcase } from '@/components/sections/PhoneShowcase';
 import { ShotFrame } from '@/components/sections/ShotFrame';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { Lightbox } from '@/components/ui/Lightbox';
 import { caseStudies } from '@/data/caseStudies';
+import { integrations } from '@/data/integrations';
 import { publishedWork } from '@/data/work';
 import { cn } from '@/lib/cn';
 import { revealDelay } from '@/lib/style';
@@ -28,6 +31,11 @@ export function CaseStudyPage({ study }: CaseStudyPageProps) {
   const indexOfShot = (id: string) => study.gallery.findIndex((shot) => shot.id === id);
   
   const wideSet = study.gallery.every((shot) => shot.shape === 'wide');
+  const phoneShots = useMemo(
+    () => study.gallery.filter((shot) => shot.shape !== 'wide'),
+    [study.gallery],
+  );
+  const integration = integrations[study.slug];
 
   const position = caseStudies.findIndex((item) => item.slug === study.slug);
   const next = caseStudies[(position + 1) % caseStudies.length];
@@ -44,7 +52,9 @@ export function CaseStudyPage({ study }: CaseStudyPageProps) {
           { label: 'Role', value: study.role },
           { label: 'Platform', value: study.platform },
           { label: 'Period', value: study.period },
-          { label: 'Screens', value: String(study.gallery.length) },
+          ...(study.gallery.length > 0
+            ? [{ label: 'Screens', value: String(study.gallery.length) }]
+            : []),
         ]}
       >
         {stack.length > 0 ? (
@@ -65,6 +75,20 @@ export function CaseStudyPage({ study }: CaseStudyPageProps) {
               </p>
             ))}
           </section>
+
+          <PhoneShowcase
+            shots={phoneShots}
+            onOpen={(shot) => setOpenShot(indexOfShot(shot.id))}
+            className={styles.flow}
+          >
+            <header className={styles.blockHead} data-reveal="">
+              <p className={styles.eyebrow}>In the hand</p>
+              <h2 className={styles.blockTitle}>Turn the device over</h2>
+              <p className={styles.blockLede}>
+                Drag the phone to spin it, step through the screens, or open any of them full size.
+              </p>
+            </header>
+          </PhoneShowcase>
 
           <section className={styles.flow} aria-labelledby="flow-heading">
             <header className={styles.blockHead} data-reveal="">
@@ -93,6 +117,23 @@ export function CaseStudyPage({ study }: CaseStudyPageProps) {
               ))}
             </ol>
           </section>
+
+          {integration ? (
+            <section className={styles.flow} aria-labelledby="systems-heading">
+              <header className={styles.blockHead} data-reveal="">
+                <p className={styles.eyebrow}>Systems</p>
+                <h2 id="systems-heading" className={styles.blockTitle}>
+                  Where the data moves
+                </h2>
+                <p className={styles.blockLede}>
+                  Every system this app has to agree with, and which way the data flows between
+                  them.
+                </p>
+              </header>
+
+              <IntegrationMap map={integration} />
+            </section>
+          ) : null}
 
           {study.chapters.map((chapter) => (
             <section
@@ -151,6 +192,7 @@ export function CaseStudyPage({ study }: CaseStudyPageProps) {
             </section>
           ) : null}
 
+          {study.gallery.length > 0 ? (
           <section className={styles.gallery} aria-labelledby="gallery-heading">
             <header className={styles.blockHead} data-reveal="">
               <p className={styles.eyebrow}>Every screen</p>
@@ -176,6 +218,7 @@ export function CaseStudyPage({ study }: CaseStudyPageProps) {
               ))}
             </div>
           </section>
+          ) : null}
 
           <nav className={styles.outro} aria-label="Keep reading">
             <div>
