@@ -104,6 +104,24 @@ const entries: WorkItem[] = [
     images: ['/projects/onda-gt/landing.webp', '/projects/onda-gt/sap-connection.webp'],
   },
   {
+    id: 'juli-cake',
+    title: 'Juli Cake - Bakery Ordering Website',
+    context: 'Freelance',
+    period: '2026',
+    description:
+      'A storefront for a Jakarta home bakery that bakes to order: browse the menu, build a cart, pick a date the kitchen can make, and send the finished order to WhatsApp — with a dashboard for the owner to run the menu.',
+    contributions: [
+      'Built the storefront in Expo and React Native Web: menu cards with photo carousels, size-based pricing, search, and category filters.',
+      'Built a persistent cart whose earliest pickup date follows the slowest item’s lead time, and that composes the whole order into a WhatsApp message.',
+      'Built the admin dashboard to reorder, hide, edit, and add menu items, with in-browser photo compression before upload.',
+      'Put the menu and photos on Supabase with row-level security — public reads only active items, only the signed-in admin can write.',
+      'Cached the menu on the device with a built-in fallback, so the shop never opens on an empty page.',
+    ],
+    stack: ['React Native', 'Expo', 'TypeScript', 'Supabase', 'PostgreSQL', 'Web App', 'Responsive', 'WhatsApp'],
+    images: ['/projects/juli-cake/hero.webp', '/projects/juli-cake/catalog.webp'],
+    href: '',
+  },
+  {
     id: 'mamapa',
     title: 'mamAPA - Recipe App',
     context: 'Personal project',

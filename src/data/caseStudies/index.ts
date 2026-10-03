@@ -3,6 +3,7 @@ import type { CaseStudy } from '@/types/portfolio';
 import { anniversaryCase } from './anniversary';
 import { barcodeSystemCase } from './barcodeSystem';
 import { eInvoiceCase } from './eInvoice';
+import { juliCakeCase } from './juliCake';
 import { mamapaCase } from './mamapa';
 import { ondaGtCase } from './ondaGt';
 import { sapDjpCase } from './sapDjp';
@@ -18,6 +19,7 @@ export const caseStudies: CaseStudy[] = [
   eInvoiceCase,
   barcodeSystemCase,
   sapDjpCase,
+  juliCakeCase,
   mamapaCase,
   anniversaryCase,
 ];

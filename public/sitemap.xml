@@ -46,6 +46,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://dicky-portfolio.my.id/projects/juli-cake</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://dicky-portfolio.my.id/projects/anniversary</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
