@@ -16,6 +16,8 @@ const entries: WorkItem[] = [
       'Implemented Inventory Management down to bin level — available vs reserved vs in-transit stock, bin reallocation, and discrepancy documents.',
       'Built the NestJS middleware to Oracle NetSuite — a direct sync path plus a BullMQ/Redis queue — with Postgres upserts keyed on the ERP document id so a sync is safe to re-run.',
       'Built the approval chain for stock adjustments and the round trip that lets Oracle NetSuite accept or reject each one.',
+      'Added inventory sales delivery and sales return between the MSO and VHS warehouses — drafts, per-bin remarks, printable delivery notes, and export.',
+      'Reworked daily-use screens with remembered filters, date-range search, filtered totals, picking bins on delivery plans, and double-submit guards.',
       'Set up master data, per-site role-based access, and multi-language support for the operations team.',
     ],
     stack: [
