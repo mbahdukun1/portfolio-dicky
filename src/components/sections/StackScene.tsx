@@ -40,18 +40,23 @@ import styles from './StackScene.module.css';
 
 const PLATE_SIZE = 2.2;
 const PLATE_RADIUS = 0.28;
-const PLATE_GAP = 0.95;
-const PLATE_GAP_OPEN = 1.2;
+const PLATE_GAP = 1;
+const PLATE_GAP_ENGAGED = 1.12;
+const PLATE_GAP_OPEN = 1.22;
 const ACTIVE_LIFT = 0.18;
 const HOVER_LIFT = 0.1;
 const PARTICLE_COUNT = 72;
 const BASE_YAW = -0.66;
 const STACK_SPAN = 3.4;
 const LOST_SHIFT = -0.45;
-const CAMERA_DISTANCE = 11;
+const CAMERA_DISTANCE = 9.2;
 const CAMERA_DIRECTION = new Vector3(0, 0.8, 1).normalize();
 const TEXT_SIZE = 1024;
 const TEXT_STRETCH = 1.5;
+const TOUR_STEP = 2.6;
+const RUNNER_COUNT = 8;
+const DRAG_SPIN = 0.012;
+const FULL_TURN = Math.PI * 2;
 
 interface Plate {
   group: Group;
@@ -81,16 +86,16 @@ function drawLabel(plate: Plate, layer: StackLayer, palette: Palette, accent: bo
   context.shadowBlur = 22;
 
   context.fillStyle = context.strokeStyle = accent ? palette.accentText : palette.primaryText;
-  context.font = `700 116px ${palette.sans}`;
+  context.font = `700 128px ${palette.sans}`;
   context.lineWidth = 5;
   context.strokeText(layer.label, center, center + 10);
   context.fillText(layer.label, center, center + 10);
 
   context.fillStyle = context.strokeStyle = palette.secondaryText;
-  context.font = `600 50px ${palette.sans}`;
+  context.font = `600 54px ${palette.sans}`;
   context.lineWidth = 2.5;
-  context.strokeText(layer.tech, center, center + 90);
-  context.fillText(layer.tech, center, center + 90);
+  context.strokeText(layer.tech, center, center + 96);
+  context.fillText(layer.tech, center, center + 96);
 
   context.shadowBlur = 0;
   plate.texture.needsUpdate = true;
@@ -204,10 +209,48 @@ export function StackScene({ layers, missingIndex, interactive = true }: StackSc
     particles.renderOrder = count * 3;
     stack.add(particles);
 
+    const corners = [
+      [-inset, -inset],
+      [inset, -inset],
+      [inset, inset],
+      [-inset, inset],
+    ];
+    const runnerPositions = new Float32Array(RUNNER_COUNT * 3);
+    const runnerPhase = new Float32Array(RUNNER_COUNT);
+
+    for (let i = 0; i < RUNNER_COUNT; i += 1) {
+      const [x, z] = corners[i % corners.length] as [number, number];
+      runnerPositions[i * 3] = x;
+      runnerPositions[i * 3 + 2] = z;
+      runnerPhase[i] = i / RUNNER_COUNT + Math.random() * 0.15;
+    }
+
+    const runnerGeometry = new BufferGeometry();
+    const runnerAttribute = new Float32BufferAttribute(runnerPositions, 3);
+    runnerGeometry.setAttribute('position', runnerAttribute);
+
+    const runnerMaterial = new PointsMaterial({
+      size: 0.17,
+      map: dotTexture(),
+      transparent: true,
+      depthWrite: false,
+    });
+    const runners = new Points(runnerGeometry, runnerMaterial);
+    runners.renderOrder = count * 3 + 1;
+    stack.add(runners);
+
     let palette = readPalette();
     let hovered: number | null = null;
     let active: number | null = null;
+    let tour: number | null = null;
+    let engaged = false;
     let time = 0;
+    let spin = 0;
+    let spinVelocity = 0;
+    let drag: { x: number; moved: boolean } | null = null;
+    let suppressClick = false;
+
+    const leadIndex = () => active ?? tour ?? 0;
 
     const isMissing = (index: number) => index === missingIndex;
 
@@ -217,7 +260,7 @@ export function StackScene({ layers, missingIndex, interactive = true }: StackSc
 
     const paint = () => {
       plates.forEach((plate, index) => {
-        const lead = active === null ? index === 0 && missingIndex === undefined : index === active;
+        const lead = missingIndex === undefined && index === leadIndex();
         const lit = lead || index === hovered || isMissing(index);
 
         plate.fill.color.copy(
@@ -230,16 +273,19 @@ export function StackScene({ layers, missingIndex, interactive = true }: StackSc
       railMaterial.color.copy(palette.border.color);
       railMaterial.opacity = palette.border.alpha;
       particleMaterial.color.copy(palette.accent.color);
+      runnerMaterial.color.copy(palette.accent.color);
     };
 
     const updatePlates = (ease: number) => {
-      const gap = active === null ? PLATE_GAP : PLATE_GAP_OPEN;
+      const gap = active !== null ? PLATE_GAP_OPEN : engaged ? PLATE_GAP_ENGAGED : PLATE_GAP;
 
       plates.forEach((plate, index) => {
         const { group } = plate;
         const missing = isMissing(index);
-        const lift = index === active ? ACTIVE_LIFT : index === hovered ? HOVER_LIFT : 0;
-        const targetY = restY(index, gap) + lift + (missing ? Math.sin(time * 1.3) * 0.1 : 0);
+        const lift =
+          index === active ? ACTIVE_LIFT : index === hovered ? HOVER_LIFT : index === tour ? HOVER_LIFT * 0.8 : 0;
+        const wave = active === null && !missing ? Math.sin(time * 1.4 - index * 0.8) * 0.045 : 0;
+        const targetY = restY(index, gap) + lift + wave + (missing ? Math.sin(time * 1.3) * 0.1 : 0);
         const targetDim = active === null || index === active ? 1 : 0.4;
 
         group.position.y += (targetY - group.position.y) * ease;
@@ -248,7 +294,7 @@ export function StackScene({ layers, missingIndex, interactive = true }: StackSc
         group.rotation.x = missing ? 0.12 + Math.sin(time * 0.7) * 0.05 : 0;
 
         plate.dim += (targetDim - plate.dim) * ease;
-        plate.fill.opacity = missing ? 0.06 : (index === (active ?? 0) ? 0.5 : 0.26) * plate.dim;
+        plate.fill.opacity = missing ? 0.06 : (index === leadIndex() ? 0.5 : 0.26) * plate.dim;
         plate.edge.opacity = missing ? 0.55 + Math.sin(time * 3) * 0.35 : plate.edgeOpacity * plate.dim;
         plate.text.opacity = 0.35 + plate.dim * 0.65;
       });
@@ -305,9 +351,32 @@ export function StackScene({ layers, missingIndex, interactive = true }: StackSc
       }
       positionAttribute.needsUpdate = true;
 
+      const span = Math.max(top - bottom, 0.001);
+      for (let i = 0; i < RUNNER_COUNT; i += 1) {
+        const progress = ((runnerPhase[i] ?? 0) + time * (0.16 + (i % 3) * 0.05)) % 1;
+        runnerAttribute.setY(i, i % 2 === 0 ? bottom + progress * span : top - progress * span);
+      }
+      runnerAttribute.needsUpdate = true;
+
+      const nextTour =
+        interactive && missingIndex === undefined && !engaged && active === null
+          ? Math.floor(time / TOUR_STEP) % count
+          : null;
+      if (nextTour !== tour) {
+        tour = nextTour;
+        paint();
+      }
+
+      if (!drag) {
+        spin += spinVelocity * delta;
+        spinVelocity *= Math.exp(-delta * 4);
+        const rest = Math.round(spin / FULL_TURN) * FULL_TURN;
+        spin += (rest - spin) * (1 - Math.exp(-delta * 1.6));
+      }
+
       tilt.x += (pointer.x - tilt.x) * ease;
       tilt.y += (pointer.y - tilt.y) * ease;
-      stack.rotation.y = BASE_YAW + tilt.x * 0.35;
+      stack.rotation.y = BASE_YAW + spin + tilt.x * 0.35;
       stack.rotation.x = tilt.y * 0.15;
       stack.position.x += ((active === null ? restX : openShift) - stack.position.x) * ease;
       stack.scale.setScalar(stack.scale.x + ((active === null ? 1 : openScale) - stack.scale.x) * ease);
@@ -348,18 +417,54 @@ export function StackScene({ layers, missingIndex, interactive = true }: StackSc
       pointer.x = (event.clientX - rect.left) / rect.width - 0.5;
       pointer.y = (event.clientY - rect.top) / rect.height - 0.5;
 
+      if (drag) {
+        const dx = event.clientX - drag.x;
+        if (Math.abs(dx) > 3) drag.moved = true;
+        if (drag.moved) {
+          spin += dx * DRAG_SPIN;
+          spinVelocity = dx * DRAG_SPIN * 60;
+          drag.x = event.clientX;
+          root.style.cursor = 'grabbing';
+        }
+        return;
+      }
+
       const overPanel = event.target instanceof Element && event.target.closest('[data-panel]');
       if (interactive) setHovered(overPanel ? null : pick(event));
+    };
+
+    const handleEnter = () => {
+      engaged = true;
     };
 
     const handleLeave = () => {
       pointer.x = 0;
       pointer.y = 0;
+      engaged = false;
       setHovered(null);
+    };
+
+    const handleDown = (event: PointerEvent) => {
+      if (!interactive || (event.target instanceof Element && event.target.closest('[data-panel]'))) return;
+      drag = { x: event.clientX, moved: false };
+      spinVelocity = 0;
+      root.setPointerCapture(event.pointerId);
+    };
+
+    const handleUp = (event: PointerEvent) => {
+      if (!drag) return;
+      suppressClick = drag.moved;
+      drag = null;
+      if (root.hasPointerCapture(event.pointerId)) root.releasePointerCapture(event.pointerId);
+      root.style.cursor = hovered === null ? '' : 'pointer';
     };
 
     const handleClick = (event: MouseEvent) => {
       if (!interactive) return;
+      if (suppressClick) {
+        suppressClick = false;
+        return;
+      }
       if (event.target instanceof Element && event.target.closest('[data-panel]')) return;
       const index = pick(event);
       select(index === null || index === active ? null : index);
@@ -394,7 +499,11 @@ export function StackScene({ layers, missingIndex, interactive = true }: StackSc
     const stopLoop = runWhileVisible(root, renderer, tick);
     sizing.observe(root);
     root.addEventListener('pointermove', handleMove);
+    root.addEventListener('pointerenter', handleEnter);
     root.addEventListener('pointerleave', handleLeave);
+    root.addEventListener('pointerdown', handleDown);
+    root.addEventListener('pointerup', handleUp);
+    root.addEventListener('pointercancel', handleUp);
     root.addEventListener('click', handleClick);
     root.addEventListener('keydown', handleKey);
 
@@ -410,7 +519,11 @@ export function StackScene({ layers, missingIndex, interactive = true }: StackSc
       stopTheme();
       sizing.disconnect();
       root.removeEventListener('pointermove', handleMove);
+      root.removeEventListener('pointerenter', handleEnter);
       root.removeEventListener('pointerleave', handleLeave);
+      root.removeEventListener('pointerdown', handleDown);
+      root.removeEventListener('pointerup', handleUp);
+      root.removeEventListener('pointercancel', handleUp);
       root.removeEventListener('click', handleClick);
       root.removeEventListener('keydown', handleKey);
       root.style.cursor = '';
@@ -446,7 +559,7 @@ export function StackScene({ layers, missingIndex, interactive = true }: StackSc
       {layer ? (
         <div className={styles.panel} key={layer.id} data-panel="" aria-hidden="true">
           <span className={styles.panelEyebrow}>
-            Layer {String((selected ?? 0) + 1).padStart(2, '0')} · {layer.label}
+            Layer {(selected ?? 0) + 1} · {layer.label}
           </span>
           <span className={styles.panelTitle}>{group?.title ?? layer.label}</span>
           {group ? <p className={styles.panelText}>{group.description}</p> : null}
@@ -462,7 +575,7 @@ export function StackScene({ layers, missingIndex, interactive = true }: StackSc
 
       {interactive ? (
         <span className={cn(styles.hint, layer && styles.hintShifted)} aria-hidden="true">
-          {layer ? 'Esc or click to close' : 'Click a layer · or use ↑ ↓'}
+          {layer ? 'Esc or click to close' : 'Drag to spin · click a layer'}
         </span>
       ) : null}
     </div>

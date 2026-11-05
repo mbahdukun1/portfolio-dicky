@@ -1,8 +1,17 @@
 .layout {
   display: grid;
+  gap: var(--space-9);
+}
+
+.top {
+  display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   gap: var(--space-8);
   align-items: center;
+}
+
+.layout .stack {
+  min-height: clamp(380px, 40vw, 540px);
 }
 
 .prose {
@@ -55,7 +64,7 @@
 }
 
 @media (max-width: 1024px) {
-  .layout {
+  .top {
     grid-template-columns: minmax(0, 1fr);
   }
 }

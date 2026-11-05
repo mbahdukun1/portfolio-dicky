@@ -3,6 +3,7 @@ import { languages } from '@/data/education';
 import { profile } from '@/data/profile';
 
 import styles from './About.module.css';
+import { RequestJourney } from './RequestJourney';
 import { StackVisual } from './StackVisual';
 
 export function About() {
@@ -14,25 +15,31 @@ export function About() {
       pattern="beam"
     >
       <div className={styles.layout}>
-        <div className={styles.prose} data-reveal="">
-          {profile.about.map((paragraph) => (
-            <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-          ))}
+        <div className={styles.top}>
+          <div className={styles.prose} data-reveal="">
+            {profile.about.map((paragraph) => (
+              <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+            ))}
 
-          <div className={styles.languages}>
-            <span className={styles.languagesLabel}>Languages</span>
-            <ul>
-              {languages.map((language) => (
-                <li key={language.name}>
-                  <strong>{language.name}</strong>
-                  <span>{language.level}</span>
-                </li>
-              ))}
-            </ul>
+            <div className={styles.languages}>
+              <span className={styles.languagesLabel}>Languages</span>
+              <ul>
+                {languages.map((language) => (
+                  <li key={language.name}>
+                    <strong>{language.name}</strong>
+                    <span>{language.level}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
+
+          <StackVisual className={styles.stack} />
         </div>
 
-        <StackVisual />
+        <div data-reveal="">
+          <RequestJourney />
+        </div>
       </div>
     </Section>
   );

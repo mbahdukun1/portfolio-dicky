@@ -4,6 +4,8 @@
   overflow: hidden;
   border-radius: 20px;
   outline: none;
+  cursor: grab;
+  touch-action: pan-y;
   animation: scene-in var(--duration-slow) var(--ease-out) both;
 }
 
@@ -26,10 +28,10 @@
 
 .floor {
   position: absolute;
-  left: 20%;
-  bottom: 14%;
-  width: 60%;
-  height: 90px;
+  left: 15%;
+  bottom: 10%;
+  width: 70%;
+  height: 120px;
   border-radius: 50%;
   background: var(--aura-a);
   filter: blur(30px);
