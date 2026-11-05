@@ -30,6 +30,7 @@ export const experiences: Experience[] = [
       'Built the WMS web console and its NestJS middleware to Oracle NetSuite, with BullMQ and Redis queueing and Postgres upserts keyed on the ERP document id.',
       'Built WMS Mobile, an offline-first handheld app on local SQLite for receiving, transfers, and stock counts.',
       'Built Work Order, a fleet maintenance app with a nine-step repair lifecycle, a running job timer, and single sign-on.',
+      'Built the SPPB outbound module, document exports, and maintenance dashboards — MTTR, average handling time, stock adjustments — for the KFM-TID sparepart system, across React and NestJS.',
     ],
     stack: [
       'System Architecture',
@@ -42,8 +43,8 @@ export const experiences: Experience[] = [
       'TDD',
       'DevOps',
     ],
-    projects: ['wms', 'wms-mobile', 'work-order'],
-    systems: 3,
+    projects: ['wms', 'wms-mobile', 'work-order', 'tid-sparepart'],
+    systems: 4,
   },
   {
     id: 'k-appraisal',
