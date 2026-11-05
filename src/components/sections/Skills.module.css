@@ -45,14 +45,14 @@
   margin-top: var(--space-5);
 }
 
-.items li {
+.item {
   position: relative;
   padding-left: var(--space-4);
   font-size: var(--text-sm);
   color: var(--text-secondary);
 }
 
-.items li::before {
+.item::before {
   content: '';
   position: absolute;
   left: 0;
@@ -60,8 +60,132 @@
   width: 5px;
   height: 5px;
   border-radius: var(--radius-full);
+  background-color: var(--border-strong);
+}
+
+.skill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: var(--text-sm);
+  text-align: left;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+.skill::before {
   background-color: var(--accent);
-  opacity: 0.65;
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+}
+
+.skill:hover,
+.skillActive {
+  color: var(--accent-strong);
+}
+
+.skill:hover::before,
+.skillActive::before {
+  transform: scale(1.4);
+  box-shadow: 0 0 0 4px var(--accent-muted);
+}
+
+.count {
+  padding: 0 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  line-height: 1.6;
+  color: var(--text-tertiary);
+}
+
+.skillActive .count {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.usage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  min-height: 58px;
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px dashed var(--border);
+}
+
+.usageHint,
+.usageLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.02em;
+  color: var(--text-tertiary);
+}
+
+.usageSkill {
+  color: var(--accent);
+}
+
+.usageList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.usageList li {
+  animation: chip-in 360ms var(--ease-out) both;
+}
+
+.usageList li:nth-child(2) {
+  animation-delay: 50ms;
+}
+
+.usageList li:nth-child(3) {
+  animation-delay: 100ms;
+}
+
+.usageList li:nth-child(n + 4) {
+  animation-delay: 150ms;
+}
+
+@keyframes chip-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+.usageLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-full);
+  background: var(--accent-muted);
+  font-size: 0.8125rem;
+  color: var(--accent-strong);
+  transition: background-color var(--duration-base) var(--ease-out);
+}
+
+.usageLink:hover {
+  background: color-mix(in srgb, var(--accent) 24%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .usageList li {
+    animation: none;
+  }
 }
 
 @media (max-width: 860px) {

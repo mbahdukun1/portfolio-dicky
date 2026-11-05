@@ -1,17 +1,45 @@
+@property --ambient-1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #2dd4bf;
+}
+
+@property --ambient-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #3884ff;
+}
+
 .backdrop {
+  --ambient-strength: 24%;
+  --spot-x: 50vw;
+  --spot-y: -400px;
+  --spot-on: 0;
+
   position: fixed;
   inset: 0;
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
   background-color: var(--bg);
+  transition:
+    --ambient-1 1400ms var(--ease-out),
+    --ambient-2 1400ms var(--ease-out);
+}
+
+:global([data-theme='light']) .backdrop {
+  --ambient-strength: 14%;
 }
 
 .horizon {
   position: absolute;
   inset: 0 0 auto 0;
   height: 620px;
-  background: var(--glow);
+  background: radial-gradient(
+    ellipse 70% 100% at 50% 0%,
+    color-mix(in srgb, var(--ambient-1) calc(var(--ambient-strength) * 0.7), transparent),
+    transparent 70%
+  );
 }
 
 .auraA,
@@ -29,14 +57,22 @@
 .auraA {
   top: -22%;
   left: -6%;
-  background: var(--aura-a);
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--ambient-1) var(--ambient-strength), transparent),
+    transparent 62%
+  );
   animation: drift-a 24s var(--ease-in-out) infinite alternate;
 }
 
 .auraB {
-  top: 14%;
+  bottom: -24%;
   right: -14%;
-  background: var(--aura-b);
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--ambient-2) calc(var(--ambient-strength) * 0.8), transparent),
+    transparent 62%
+  );
   animation: drift-b 30s var(--ease-in-out) infinite alternate;
 }
 
@@ -48,18 +84,32 @@
 
 @keyframes drift-b {
   to {
-    transform: translate3d(-7%, 10%, 0) scale(0.92);
+    transform: translate3d(-7%, -10%, 0) scale(0.92);
   }
 }
 
-.grid {
+.grid,
+.gridSpot {
   position: absolute;
   inset: 0;
   background-image:
     linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 68px 68px;
-  mask-image: radial-gradient(ellipse 95% 62% at 50% 0%, #000 10%, transparent 78%);
+}
+
+.grid {
+  mask-image: radial-gradient(ellipse 120% 90% at 50% 30%, #000 20%, transparent 85%);
+  opacity: 0.8;
+}
+
+.gridSpot {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--ambient-1) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--ambient-1) 55%, transparent) 1px, transparent 1px);
+  mask-image: radial-gradient(circle 220px at var(--spot-x) var(--spot-y), #000, transparent 75%);
+  opacity: calc(var(--spot-on) * 0.45);
+  transition: opacity 600ms var(--ease-out);
 }
 
 .grain {
@@ -71,8 +121,16 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .backdrop {
+    transition: none;
+  }
+
   .auraA,
   .auraB {
     animation: none;
+  }
+
+  .gridSpot {
+    display: none;
   }
 }

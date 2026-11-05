@@ -1,6 +1,31 @@
 .timeline {
+  position: relative;
   display: grid;
   gap: var(--space-6);
+}
+
+.timeline::before,
+.timeline::after {
+  content: '';
+  position: absolute;
+  top: var(--track-start, 12px);
+  left: var(--track-x, 13px);
+  width: 2px;
+  height: var(--track-length, 0px);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.timeline::before {
+  background-color: var(--border);
+}
+
+.timeline::after {
+  background: linear-gradient(to bottom, var(--accent-strong), var(--accent));
+  box-shadow: 0 0 12px var(--accent);
+  transform: scaleY(var(--track-progress, 0));
+  transform-origin: top;
+  transition: transform 160ms linear;
 }
 
 .item {
@@ -16,32 +41,47 @@
   padding-top: 6px;
 }
 
-.marker::before {
-  content: '';
-  position: absolute;
-  top: 24px;
-  bottom: calc(var(--space-6) * -1 - 4px);
-  width: 1px;
-  background-color: var(--border);
-}
-
-.item:last-child .marker::before {
-  display: none;
-}
-
 .dot,
 .dotCurrent {
-  width: 11px;
-  height: 11px;
+  position: relative;
+  z-index: 1;
+  width: 13px;
+  height: 13px;
   border-radius: var(--radius-full);
   border: 2px solid var(--border-strong);
   background-color: var(--bg);
+  transition:
+    border-color var(--duration-base) var(--ease-out),
+    background-color var(--duration-base) var(--ease-out),
+    box-shadow 500ms var(--ease-out),
+    transform 500ms var(--ease-out);
 }
 
-.dotCurrent {
+.item[data-lit] .dot {
+  border-color: var(--accent);
+  background-color: var(--accent-muted);
+  box-shadow: 0 0 0 4px var(--accent-muted);
+}
+
+.item[data-lit] .dotCurrent {
   border-color: var(--accent);
   background-color: var(--accent);
-  box-shadow: 0 0 0 4px var(--accent-muted);
+  box-shadow:
+    0 0 0 5px var(--accent-muted),
+    0 0 18px var(--accent);
+  transform: scale(1.15);
+}
+
+.item[data-lit] .body {
+  border-color: var(--border-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline::after,
+  .dot,
+  .dotCurrent {
+    transition: none;
+  }
 }
 
 .body {
@@ -128,7 +168,7 @@
 }
 
 .current {
-  color: var(--accent);
+  color: var(--accent-alt);
 }
 
 .summary {

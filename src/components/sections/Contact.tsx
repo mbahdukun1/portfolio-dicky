@@ -3,12 +3,14 @@ import { Icon } from '@/components/ui/Icon';
 import { Section } from '@/components/ui/Section';
 import { profile } from '@/data/profile';
 import { useCopyToClipboard } from '@/hooks/useCopyToClipboard';
+import { useZoneClock } from '@/hooks/useZoneClock';
 import { revealDelay } from '@/lib/style';
 
 import styles from './Contact.module.css';
 
 export function Contact() {
   const { copied, copy } = useCopyToClipboard();
+  const clock = useZoneClock('Asia/Jakarta');
 
   return (
     <Section
@@ -21,6 +23,17 @@ export function Contact() {
     >
       <div className={styles.layout}>
         <div className={styles.primary} data-reveal="">
+          <div className={styles.status}>
+            <span className={styles.available}>
+              <span className={styles.pulse} aria-hidden="true" />
+              Open to work
+            </span>
+            <span className={styles.clock}>
+              <span className={styles.clockTime}>{clock.time}</span>
+              Jakarta · WIB · {clock.offsetLabel}
+            </span>
+          </div>
+
           <p className={styles.emailLabel}>Email</p>
 
           <a className={styles.email} href={`mailto:${profile.email}`}>

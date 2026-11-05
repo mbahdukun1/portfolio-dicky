@@ -75,6 +75,8 @@
   --accent-strong: #5eead4;
   --accent-muted: rgba(45, 212, 191, 0.14);
   --accent-contrast: #04231f;
+  --accent-alt: #f5b454;
+  --accent-alt-muted: rgba(245, 180, 84, 0.14);
 
   --grid-line: rgba(255, 255, 255, 0.045);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
@@ -120,6 +122,8 @@
   --accent-strong: #115e56;
   --accent-muted: rgba(15, 118, 110, 0.1);
   --accent-contrast: #f5f7f6;
+  --accent-alt: #b45309;
+  --accent-alt-muted: rgba(180, 83, 9, 0.1);
 
   --grid-line: rgba(21, 24, 28, 0.05);
   --shadow-sm: 0 1px 2px rgba(21, 24, 28, 0.07);

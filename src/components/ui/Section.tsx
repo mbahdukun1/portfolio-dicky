@@ -3,7 +3,7 @@ import { useRef, type ReactNode } from 'react';
 import { Container } from '@/components/layout/Container';
 import { Icon } from '@/components/ui/Icon';
 import { Link } from '@/components/ui/Link';
-import { nextSection } from '@/data/navigation';
+import { navigation, nextSection } from '@/data/navigation';
 import { usePointerGlow } from '@/hooks/usePointerGlow';
 import { cn } from '@/lib/cn';
 import type { SectionPattern } from '@/types/portfolio';
@@ -34,6 +34,7 @@ export function Section({
   const sectionRef = useRef<HTMLElement>(null);
   const headingId = `${id}-heading`;
   const next = nextSection(id);
+  const position = navigation.findIndex((item) => item.id === id);
 
   usePointerGlow(sectionRef);
 
@@ -46,6 +47,19 @@ export function Section({
     >
       <span className={cn(styles.pattern, styles[pattern])} aria-hidden="true" />
       <span className={styles.spotlight} aria-hidden="true" />
+
+      {position > 0 ? (
+        <div className={styles.indexWrap} aria-hidden="true">
+          <Container>
+            <span className={styles.index}>
+              <span className={styles.indexNumber}>
+                {position} / {navigation.length - 1}
+              </span>
+              {eyebrow}
+            </span>
+          </Container>
+        </div>
+      ) : null}
 
       <Container className={styles.body}>
         <header className={styles.header} data-reveal="">

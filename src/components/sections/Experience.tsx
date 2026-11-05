@@ -1,12 +1,18 @@
+import { useRef } from 'react';
+
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { Section } from '@/components/ui/Section';
 import { experiences, recentExperiences, softwareExperiences } from '@/data/experiences';
+import { useTimelineProgress } from '@/hooks/useTimelineProgress';
 
 import styles from './Experience.module.css';
 import { ExperienceItem } from './ExperienceItem';
 
 export function Experience() {
+  const timelineRef = useRef<HTMLOListElement>(null);
+  useTimelineProgress(timelineRef, `.${styles.dot}, .${styles.dotCurrent}`);
+
   const remaining = experiences.length - recentExperiences.length;
   const earliestYear = Math.min(
     ...experiences.map((item) => Number(item.start.slice(0, 4))),
@@ -20,7 +26,7 @@ export function Experience() {
       pattern="rules"
       description={`${softwareExperiences.length} engineering roles across product studios, consultancies, and enterprise delivery — from automation bots to the architecture decisions behind a microservices platform.`}
     >
-      <ol className={styles.timeline}>
+      <ol className={styles.timeline} ref={timelineRef}>
         {recentExperiences.map((experience, index) => (
           <ExperienceItem key={experience.id} experience={experience} delay={index * 60} />
         ))}

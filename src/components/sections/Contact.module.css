@@ -5,6 +5,64 @@
   align-items: center;
 }
 
+.status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+.available {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 14px;
+  border: 1px solid var(--accent-alt);
+  border-radius: var(--radius-full);
+  background-color: var(--accent-alt-muted);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--accent-alt);
+}
+
+.pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-alt);
+  box-shadow: 0 0 0 4px var(--accent-alt-muted);
+  animation: pulse 2s var(--ease-out) infinite;
+}
+
+@keyframes pulse {
+  50% {
+    box-shadow: 0 0 0 9px transparent;
+  }
+}
+
+.clock {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.02em;
+  color: var(--text-tertiary);
+}
+
+.clockTime {
+  font-size: var(--text-base);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse {
+    animation: none;
+  }
+}
+
 .emailLabel {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
@@ -16,9 +74,10 @@
 .email {
   display: inline-block;
   margin-top: var(--space-3);
-  font-size: clamp(1.35rem, 1rem + 1.8vw, 2.25rem);
-  font-weight: 600;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.6rem, 0.9rem + 2.4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
   word-break: break-word;
   background-image: linear-gradient(var(--accent), var(--accent));
   background-repeat: no-repeat;
