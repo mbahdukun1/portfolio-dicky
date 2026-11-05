@@ -1,20 +1,32 @@
-import { useEffect, type ReactNode } from 'react';
+import { lazy, Suspense, useEffect, type ReactNode } from 'react';
 
 import { Backdrop } from '@/components/layout/Backdrop';
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
-import { findCaseStudy } from '@/data/caseStudies';
+import { findCaseStudyEntry } from '@/data/caseStudies/catalog';
 import { absoluteUrl } from '@/data/site';
 import { useReveal } from '@/hooks/useReveal';
 import { useRouter } from '@/hooks/useRouter';
-import { CaseStudyPage } from '@/pages/CaseStudyPage';
-import { ExperiencePage } from '@/pages/ExperiencePage';
 import { HomePage } from '@/pages/HomePage';
-import { NotFoundPage } from '@/pages/NotFoundPage';
-import { ProjectsPage } from '@/pages/ProjectsPage';
 
 import styles from './App.module.css';
+
+const loadCaseStudyPage = () => import('@/pages/CaseStudyPage');
+const loadExperiencePage = () => import('@/pages/ExperiencePage');
+const loadProjectsPage = () => import('@/pages/ProjectsPage');
+const loadNotFoundPage = () => import('@/pages/NotFoundPage');
+
+const CaseStudyRoute = lazy(() => loadCaseStudyPage().then((module) => ({ default: module.CaseStudyRoute })));
+const ExperiencePage = lazy(() => loadExperiencePage().then((module) => ({ default: module.ExperiencePage })));
+const ProjectsPage = lazy(() => loadProjectsPage().then((module) => ({ default: module.ProjectsPage })));
+const NotFoundPage = lazy(() => loadNotFoundPage().then((module) => ({ default: module.NotFoundPage })));
+
+function preloadPages() {
+  void loadProjectsPage();
+  void loadCaseStudyPage();
+  void loadExperiencePage();
+}
 
 const HOME_TITLE = 'Dicky Maulana — Software Engineer & Full Stack Developer';
 
@@ -25,7 +37,7 @@ const PAGE_TITLES: Record<string, string> = {
 
 function caseStudyFor(path: string) {
   const slug = path.startsWith('/projects/') ? path.slice('/projects/'.length) : '';
-  return slug ? findCaseStudy(slug) : undefined;
+  return slug ? findCaseStudyEntry(slug) : undefined;
 }
 
 function renderPage(path: string): ReactNode {
@@ -34,7 +46,7 @@ function renderPage(path: string): ReactNode {
   if (path === '/experience') return <ExperiencePage />;
 
   const study = caseStudyFor(path);
-  if (study) return <CaseStudyPage key={study.slug} study={study} />;
+  if (study) return <CaseStudyRoute key={study.slug} slug={study.slug} />;
 
   return <NotFoundPage />;
 }
@@ -49,6 +61,16 @@ export default function App() {
   const { path } = useRouter();
 
   useReveal(path);
+
+  useEffect(() => {
+    if (typeof window.requestIdleCallback === 'function') {
+      const handle = window.requestIdleCallback(preloadPages, { timeout: 4000 });
+      return () => window.cancelIdleCallback(handle);
+    }
+
+    const timer = window.setTimeout(preloadPages, 2500);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     document.title = titleFor(path);
@@ -73,7 +95,9 @@ export default function App() {
       <ScrollProgress />
       <Header />
 
-      <main id="main">{renderPage(path)}</main>
+      <main id="main">
+        <Suspense fallback={null}>{renderPage(path)}</Suspense>
+      </main>
 
       <Footer />
     </>

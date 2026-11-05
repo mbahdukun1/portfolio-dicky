@@ -41,7 +41,7 @@
 
 .close:hover {
   border-color: var(--accent);
-  background-color: rgba(45, 212, 191, 0.14);
+  background-color: var(--accent-muted);
   color: var(--accent-strong);
 }
 
@@ -70,7 +70,7 @@
 
 .nav:hover {
   border-color: var(--accent);
-  background-color: rgba(45, 212, 191, 0.14);
+  background-color: var(--accent-muted);
   color: var(--accent-strong);
 }
 

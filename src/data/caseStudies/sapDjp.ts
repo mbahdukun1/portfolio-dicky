@@ -8,6 +8,12 @@ export const sapDjpCase: CaseStudy = {
   role: 'Integration engineer',
   platform: 'Node.js middleware between SAP Business One and Coretax',
   lede: 'A two-way bridge between SAP Business One and DJP’s Coretax: tax documents leave SAP on a schedule or on demand, travel through Pajak Express, and come back as official numbers, statuses, and PDFs written onto the original record.',
+  highlights: [
+    { value: '3', label: 'Document families: faktur, bukti potong, SPT' },
+    { value: '2-way', label: 'SAP Business One ⇄ Coretax' },
+    { value: 'Scheduled', label: 'Sync by default, manual resend when needed' },
+    { value: 'NPWP / NIK', label: 'Validated before anything is sent' },
+  ],
 
   overview: [
     'Coretax is the core tax administration system of DJP (Direktorat Jenderal Pajak). Faktur pajak, bukti potong, and the data behind a company’s periodic tax returns all have to be issued and reported there — while the transactions they describe already live in SAP Business One.',
@@ -61,6 +67,7 @@ export const sapDjpCase: CaseStudy = {
         'SAP Business One is good at recording transactions and indifferent to how a tax authority wants them described. Coretax is the opposite. Connecting the two directly would have pushed tax rules into SAP customisations or pushed SAP’s data model into every tax call.',
         'A Node.js middleware keeps each side honest. SAP stays the system of record for the business, Coretax stays the system of record for tax, and the translation between them — validation, mapping, submission, and the return trip — lives in one place that can change when the regulations do.',
       ],
+      shots: ['integration-flow'],
     },
     {
       id: 'documents',
@@ -88,5 +95,21 @@ export const sapDjpCase: CaseStudy = {
     },
   ],
 
-  gallery: [],
+  gallery: [
+    {
+      id: 'integration-flow',
+      src: '/projects/sap-djp/cover.webp',
+      title: 'Integration flow',
+      caption:
+        'SAP Business One to the Node.js middleware, through Pajak Express to Coretax — and the official number, status, and PDF or QR code back onto the SAP document.',
+      shape: 'wide',
+    },
+  ],
+
+  outcomes: [
+    'Tax documents leave SAP Business One and reach Coretax without anyone re-keying them into a second application.',
+    'The official number, status, and issued PDF or QR code land back on the SAP document, so finance answers tax questions from the invoice itself.',
+    'NPWP and NIK are checked before submission, so a wrong tax ID is caught on day one instead of surfacing weeks later as a rejection.',
+    'Routine documents flow on a schedule, and the urgent or just-fixed ones can be sent again by hand through the same pipeline.',
+  ],
 };

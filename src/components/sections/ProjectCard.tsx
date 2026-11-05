@@ -1,11 +1,14 @@
+import { useRef } from 'react';
+
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Icon } from '@/components/ui/Icon';
 import { Link } from '@/components/ui/Link';
-import { hasCaseStudy } from '@/data/caseStudies';
+import { hasCaseStudy } from '@/data/caseStudies/catalog';
 import { integrations } from '@/data/integrations';
 import { comingSoonSettings } from '@/data/settings';
 import { cn } from '@/lib/cn';
+import { CASE_TITLE_TRANSITION, claimTransition } from '@/lib/transitions';
 import type { WorkItem } from '@/types/portfolio';
 
 import { IntegrationMap } from './IntegrationMap';
@@ -22,7 +25,7 @@ function CardCover({ item, story, className }: { item: WorkItem; story: boolean;
   return <ProjectCover item={item} className={className} />;
 }
 
-function ProjectLinks({ item }: { item: WorkItem }) {
+function ProjectLinks({ item, onStory }: { item: WorkItem; onStory: () => void }) {
   const story = hasCaseStudy(item.id);
 
   if (!story && !item.href && !item.repo) return null;
@@ -30,7 +33,7 @@ function ProjectLinks({ item }: { item: WorkItem }) {
   return (
     <div className={styles.links}>
       {story ? (
-        <Link to={`/projects/${item.id}`} className={styles.story}>
+        <Link to={`/projects/${item.id}`} className={styles.story} onClick={onStory}>
           <Icon name="expand" size={15} />
           Read the case study
         </Link>
@@ -69,9 +72,11 @@ export function ProjectCard({
   const isFeatured = variant === 'featured';
   const story = hasCaseStudy(item.id);
   const hasLinks = story || Boolean(item.href) || Boolean(item.repo);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const claimTitle = () => claimTransition(titleRef.current, CASE_TITLE_TRANSITION);
 
   const titleContent = story ? (
-    <Link to={`/projects/${item.id}`}>
+    <Link to={`/projects/${item.id}`} onClick={claimTitle}>
       {item.title}
       <Icon name="arrow-up-right" size={isFeatured ? 18 : 16} />
     </Link>
@@ -93,7 +98,7 @@ export function ProjectCard({
         <span className={styles.period}>{item.period}</span>
       </div>
 
-      <h3 className={cn(styles.title, isFeatured && styles.featuredTitle)}>{titleContent}</h3>
+      <h3 ref={titleRef} className={cn(styles.title, isFeatured && styles.featuredTitle)}>{titleContent}</h3>
 
       <p className={styles.description}>{item.description}</p>
 
@@ -117,7 +122,7 @@ export function ProjectCard({
             </div>
           ) : null}
 
-          <ProjectLinks item={item} />
+          <ProjectLinks item={item} onStory={claimTitle} />
         </div>
       ) : null}
     </>

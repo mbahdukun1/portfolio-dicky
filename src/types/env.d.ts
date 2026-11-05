@@ -9,3 +9,8 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+declare module 'virtual:case-study-catalog' {
+  const catalog: { slug: string; title: string; screens: number }[];
+  export default catalog;
+}

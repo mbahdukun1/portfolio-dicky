@@ -1,4 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { flushSync } from 'react-dom';
+
+import { prefersReducedMotion } from '@/lib/motion';
 
 import {
   normalisePath,
@@ -13,9 +16,32 @@ function readLocation(): RouteLocation {
   return { path: normalisePath(window.location.pathname), hash: window.location.hash };
 }
 
+function pageSettled(timeout = 400): Promise<void> {
+  const main = document.getElementById('main');
+  if (!main || main.childElementCount > 0) return Promise.resolve();
+
+  return new Promise((resolve) => {
+    const done = () => {
+      observer.disconnect();
+      window.clearTimeout(timer);
+      resolve();
+    };
+    const observer = new MutationObserver(() => {
+      if (main.childElementCount > 0) done();
+    });
+    const timer = window.setTimeout(done, timeout);
+    observer.observe(main, { childList: true });
+  });
+}
+
 export function RouterProvider({ children }: { children: ReactNode }) {
   const [location, setLocation] = useState<RouteLocation>(readLocation);
   const mounted = useRef(false);
+  const currentPath = useRef(location.path);
+
+  useEffect(() => {
+    currentPath.current = location.path;
+  }, [location.path]);
 
   useEffect(() => {
     const sync = () => setLocation(readLocation());
@@ -35,7 +61,22 @@ export function RouterProvider({ children }: { children: ReactNode }) {
     if (unchanged) window.history.replaceState(null, '', target);
     else window.history.pushState(null, '', target);
 
-    setLocation(next);
+    const animate =
+      !next.hash &&
+      next.path !== currentPath.current &&
+      typeof document.startViewTransition === 'function' &&
+      !prefersReducedMotion();
+
+    if (!animate) {
+      setLocation(next);
+      return;
+    }
+
+    document.startViewTransition(async () => {
+      flushSync(() => setLocation(next));
+      window.scrollTo(0, 0);
+      await pageSettled();
+    });
   }, []);
 
   useEffect(() => {

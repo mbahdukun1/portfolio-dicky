@@ -10,6 +10,12 @@ export const barcodeSystemCase: CaseStudy = {
   role: 'Flutter & integration engineer',
   platform: 'Flutter desktop app on SAP Business One',
   lede: 'A Flutter desktop workstation for printing barcode price labels in bulk — pull items and prices from SAP Business One or a spreadsheet, choose what needs a label, and send it to the printer.',
+  highlights: [
+    { value: '29,998', label: 'Rows processed in one import' },
+    { value: '2', label: 'Sources: SAP Business One or XLSX' },
+    { value: '4.0 × 1.0 in', label: 'Price label preset' },
+    { value: 'Auto', label: 'Selection saved as it changes' },
+  ],
 
   overview: [
     'Ruby Barcode System is the app a retail team uses to put prices on products. Every item needs a label with the brand, the item name, the size, the price, and a barcode a scanner can read at the till, and the catalogue it has to cover runs to tens of thousands of items.',
@@ -131,5 +137,12 @@ export const barcodeSystemCase: CaseStudy = {
       caption: 'Fetching items and a price list from SAP Business One instead of a spreadsheet.',
       shape: 'wide',
     },
+  ],
+
+  outcomes: [
+    'Prices come straight from the SAP Business One price list, so labels are never retyped from a second source.',
+    'A catalogue of around 30,000 items stays searchable, and only the items that changed get printed.',
+    'Selections survive a restart, so a batch built over a shift is not lost to a closed window.',
+    'What the operator previews is what the label printer produces, with the printer state stated before anyone presses print.',
   ],
 };

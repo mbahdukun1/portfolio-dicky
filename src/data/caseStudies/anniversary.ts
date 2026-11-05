@@ -10,6 +10,12 @@ export const anniversaryCase: CaseStudy = {
   role: 'Design & build',
   platform: 'Single-page web',
   lede: 'A one-year anniversary present that happens to be a website: a sealed cover, a counter that keeps running while you read it, a timeline of the year, and a letter you have to open.',
+  highlights: [
+    { value: '1', label: 'Reader the page was written for' },
+    { value: '1', label: 'Path through it, no navigation' },
+    { value: 'Live', label: 'Counter that runs while you read' },
+    { value: '0', label: 'Animations that visibly loop' },
+  ],
 
   overview: [
     'This one is not a product. It is a gift that took the shape of a web page — a single scrolling site built for a first anniversary, with one reader in mind.',

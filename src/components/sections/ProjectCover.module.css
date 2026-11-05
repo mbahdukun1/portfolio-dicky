@@ -99,6 +99,24 @@
   opacity: 0.1;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  :hover > .stack:not(.phones) .front {
+    transform: translate3d(-8px, 6px, 0);
+  }
+
+  :hover > .stack:not(.phones) .layer:not(.front) {
+    transform: translate3d(16px, -12px, 0) scale(calc(1 - var(--layer) * 0.03));
+  }
+
+  :hover > .phones .front {
+    transform: translate3d(-8px, -50%, 0);
+  }
+
+  :hover > .phones .layer:not(.front) {
+    transform: translate3d(14px, calc(-50% - 8px), 0) scale(calc(1 - var(--layer) * 0.04));
+  }
+}
+
 .generated {
   display: grid;
   place-items: center;

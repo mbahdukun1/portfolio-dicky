@@ -10,6 +10,12 @@ export const juliCakeCase: CaseStudy = {
   role: 'Design & full-stack build',
   platform: 'Responsive web + admin dashboard',
   lede: 'A storefront for a Jakarta home bakery that bakes to order: browse the menu, fill a cart, pick a date the kitchen can actually make, and send the whole order to WhatsApp in one tap.',
+  highlights: [
+    { value: '9', label: 'Menu items with photo carousels' },
+    { value: '1 tap', label: 'From cart to a complete WhatsApp order' },
+    { value: 'Lead time', label: 'Earliest date follows the slowest item' },
+    { value: 'RLS', label: 'Only the signed-in admin can write' },
+  ],
 
   overview: [
     'Juli Cake is a home kitchen in Sunter, Jakarta, that bakes everything to order — cakes, brownies, pastry, and cookies, with no overnight stock and no preservatives. Before this site, every order started as a WhatsApp chat that went back and forth over sizes, prices, and dates before anyone knew what was actually being ordered.',

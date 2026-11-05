@@ -1,5 +1,5 @@
 import { Section } from '@/components/ui/Section';
-import { caseStudies } from '@/data/caseStudies';
+import { caseStudyCatalog, documentedScreens } from '@/data/caseStudies/catalog';
 import { method, stack } from '@/data/colophon';
 import { publishedWork } from '@/data/work';
 import { revealDelay } from '@/lib/style';
@@ -66,11 +66,11 @@ export function Colophon() {
         </div>
         <div>
           <dt>Case studies</dt>
-          <dd>{caseStudies.length}</dd>
+          <dd>{caseStudyCatalog.length}</dd>
         </div>
         <div>
           <dt>Screens documented</dt>
-          <dd>{caseStudies.reduce((total, study) => total + study.gallery.length, 0)}</dd>
+          <dd>{documentedScreens}</dd>
         </div>
         <div>
           <dt>Runtime dependencies</dt>

@@ -10,6 +10,12 @@ export const wmsMobileCase: CaseStudy = {
   role: 'Mobile engineer',
   platform: 'Android/iOS, offline-first on local SQLite',
   lede: 'The warehouse floor companion to the WMS console — receiving, transfers, and stock counts done on a phone, against a local database that keeps working when the Wi-Fi does not.',
+  highlights: [
+    { value: '~9,500', label: 'Master records held on the device' },
+    { value: 'SQLite', label: 'Local database, scanning works offline' },
+    { value: '3', label: 'Work patterns: queues, lists, and tiles' },
+    { value: 'QR', label: 'Scanning in place of typed codes' },
+  ],
 
   overview: [
     'WMS Mobile is the handheld half of the warehouse platform. The web console is where supervisors plan and reconcile; this is where the work actually happens — a picker walking the aisles with a phone, receiving a shipment against an MRN, scanning a material into a bin, counting a rack.',

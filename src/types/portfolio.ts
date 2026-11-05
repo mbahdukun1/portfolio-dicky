@@ -133,6 +133,7 @@ export interface CaseStudy {
   lede: string;
   role: string;
   platform: string;
+  highlights?: { value: string; label: string }[];
   overview: string[];
   flow: FlowStep[];
   chapters: CaseChapter[];

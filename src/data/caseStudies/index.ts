@@ -29,7 +29,3 @@ const bySlug = new Map(caseStudies.map((study) => [study.slug, study]));
 export function findCaseStudy(slug: string): CaseStudy | undefined {
   return bySlug.get(slug);
 }
-
-export function hasCaseStudy(slug: string): boolean {
-  return bySlug.has(slug);
-}

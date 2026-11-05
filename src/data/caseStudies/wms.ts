@@ -10,6 +10,12 @@ export const wmsCase: CaseStudy = {
   role: 'Full-stack engineer',
   platform: 'Web console + NetSuite middleware',
   lede: 'One console for 40 warehouses across Indonesia — what comes in, what goes out, and what is on the shelf — kept in step with Oracle NetSuite by a middleware that sits between them.',
+  highlights: [
+    { value: '40', label: 'Warehouses run from one console' },
+    { value: '~9,500', label: 'Materials in master data' },
+    { value: '729', label: 'Owners, suppliers, and customers' },
+    { value: '2-way', label: 'Sync with Oracle NetSuite' },
+  ],
 
   overview: [
     'WMS is the operations console PT Motor Sights International runs its warehouses from. Goods arrive as a transfer order, a customs PIB declaration, a local vendor PO, or a customer return; they leave as a sales order or an inter-site transfer; and in between they sit in a bin somewhere across roughly forty sites, from Jakarta to Kendari to the IMIP and IWIP industrial parks.',

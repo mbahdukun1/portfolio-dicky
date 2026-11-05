@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
 import { Container } from '@/components/layout/Container';
 import { PageIntro } from '@/components/layout/PageIntro';
@@ -9,10 +9,13 @@ import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { Lightbox } from '@/components/ui/Lightbox';
-import { caseStudies } from '@/data/caseStudies';
+import { caseStudies, findCaseStudy } from '@/data/caseStudies';
 import { integrations } from '@/data/integrations';
+import { NotFoundPage } from '@/pages/NotFoundPage';
 import { publishedWork } from '@/data/work';
+import { useLitSteps } from '@/hooks/useLitSteps';
 import { cn } from '@/lib/cn';
+import { CASE_TITLE_TRANSITION } from '@/lib/transitions';
 import { revealDelay } from '@/lib/style';
 import type { CaseStudy } from '@/types/portfolio';
 
@@ -22,8 +25,16 @@ interface CaseStudyPageProps {
   study: CaseStudy;
 }
 
+export function CaseStudyRoute({ slug }: { slug: string }) {
+  const study = findCaseStudy(slug);
+  return study ? <CaseStudyPage study={study} /> : <NotFoundPage />;
+}
+
 export function CaseStudyPage({ study }: CaseStudyPageProps) {
   const [openShot, setOpenShot] = useState<number | null>(null);
+  const stepsRef = useRef<HTMLOListElement>(null);
+
+  useLitSteps(stepsRef);
 
   const project = publishedWork.find((item) => item.id === study.slug);
   const stack = project?.stack ?? [];
@@ -48,6 +59,7 @@ export function CaseStudyPage({ study }: CaseStudyPageProps) {
         lede={study.lede}
         backTo="/projects"
         backLabel="Back to projects"
+        titleTransition={CASE_TITLE_TRANSITION}
         meta={[
           { label: 'Role', value: study.role },
           { label: 'Platform', value: study.platform },
@@ -68,6 +80,22 @@ export function CaseStudyPage({ study }: CaseStudyPageProps) {
 
       <article className={styles.body}>
         <Container>
+          {study.highlights && study.highlights.length > 0 ? (
+            <dl className={styles.highlights} aria-label="At a glance">
+              {study.highlights.map((highlight, index) => (
+                <div
+                  key={highlight.label}
+                  className={styles.highlight}
+                  data-reveal=""
+                  style={revealDelay(index * 70)}
+                >
+                  <dt className={styles.highlightLabel}>{highlight.label}</dt>
+                  <dd className={styles.highlightValue}>{highlight.value}</dd>
+                </div>
+              ))}
+            </dl>
+          ) : null}
+
           <section className={styles.overview} data-reveal="">
             {study.overview.map((paragraph, index) => (
               <p key={paragraph} className={index === 0 ? styles.lead : undefined}>
@@ -98,7 +126,7 @@ export function CaseStudyPage({ study }: CaseStudyPageProps) {
               </h2>
             </header>
 
-            <ol className={styles.steps}>
+            <ol className={styles.steps} ref={stepsRef}>
               {study.flow.map((step, index) => (
                 <li
                   key={step.title}
@@ -107,7 +135,7 @@ export function CaseStudyPage({ study }: CaseStudyPageProps) {
                   style={revealDelay(Math.min(index, 5) * 60)}
                 >
                   <span className={styles.stepIndex} aria-hidden="true">
-                    {String(index + 1).padStart(2, '0')}
+                    {index + 1}
                   </span>
                   <div>
                     <h3 className={styles.stepTitle}>{step.title}</h3>

@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { Link } from '@/components/ui/Link';
-import { hasCaseStudy } from '@/data/caseStudies';
+import { hasCaseStudy } from '@/data/caseStudies/catalog';
 import { earlierExperiences, experiences, softwareExperiences } from '@/data/experiences';
 import { publishedWork } from '@/data/work';
 import { formatDuration, formatPeriod, monthsBetween } from '@/lib/date';

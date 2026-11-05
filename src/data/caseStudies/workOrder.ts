@@ -10,6 +10,12 @@ export const workOrderCase: CaseStudy = {
   role: 'Mobile engineer',
   platform: 'Mobile app behind single sign-on',
   lede: 'A maintenance app for the people holding the spanner: raise a work order against a broken unit, then walk it through nine fixed steps from breakdown to ready-for-use, with the clock running.',
+  highlights: [
+    { value: '9', label: 'Fixed steps from breakdown to ready-for-use' },
+    { value: '1', label: 'Timer running on every active job' },
+    { value: '2', label: 'Boards: on progress and finished' },
+    { value: 'SSO', label: 'Company single sign-on' },
+  ],
 
   overview: [
     'Work Order is the app a workshop uses to keep heavy units moving. A truck comes off the road, someone raises a work order against it, and from that moment the repair is a tracked object rather than a conversation — who is on it, which step it has reached, how long it has been running, and what comes next.',

@@ -1,4 +1,4 @@
-import { caseStudies } from '@/data/caseStudies';
+import { caseStudyCatalog } from '@/data/caseStudies/catalog';
 import { experiences } from '@/data/experiences';
 import { yearsSince } from '@/lib/date';
 import type { Stat } from '@/types/portfolio';
@@ -15,7 +15,7 @@ export const stats: Stat[] = [
     detail: 'Since 2021, across product, consultancy, and enterprise teams.',
   },
   {
-    value: String(caseStudies.length),
+    value: String(caseStudyCatalog.length),
     label: 'Case studies',
     detail: 'Written end to end — the flow, the integrations, and the decisions behind each system.',
   },

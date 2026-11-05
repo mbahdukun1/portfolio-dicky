@@ -71,7 +71,7 @@ export function Lightbox({ shots, index, onClose, onNavigate }: LightboxProps) {
     >
       <header className={styles.bar}>
         <p className={styles.counter}>
-          {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+          {index + 1} / {total}
         </p>
 
         <button type="button" className={styles.close} onClick={onClose} aria-label="Close">

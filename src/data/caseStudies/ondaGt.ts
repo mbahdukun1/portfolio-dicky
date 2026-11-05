@@ -10,6 +10,12 @@ export const ondaGtCase: CaseStudy = {
   role: 'Mobile & integration engineer',
   platform: 'Android/iOS handheld app on SAP Business One',
   lede: 'A barcode-first warehouse app that turns a packing list, a picking list, or a stock opname into scans — and posts the result straight into SAP.',
+  highlights: [
+    { value: '4', label: 'Scanning flows on one shared interaction' },
+    { value: 'Live', label: 'Postings into SAP Business One' },
+    { value: 'Per rack', label: 'Locking for parallel stock opname' },
+    { value: 'No copy', label: 'Items resolved against SAP, not a local master' },
+  ],
 
   overview: [
     'Onda Goods Tracker is the handheld app the Onda warehouse team uses on the floor. Every movement of goods that used to happen on a clipboard — receiving a container, moving stock between racks, picking an order, counting the shelves — happens here as a scan, and lands in SAP Business One as a real document.',

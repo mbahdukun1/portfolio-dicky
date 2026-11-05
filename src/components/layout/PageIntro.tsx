@@ -13,6 +13,7 @@ interface PageIntroProps {
   backTo?: string;
   backLabel?: string;
   meta?: { value: string; label: string }[];
+  titleTransition?: string;
   children?: ReactNode;
 }
 
@@ -23,6 +24,7 @@ export function PageIntro({
   backTo = '/',
   backLabel = 'Back to home',
   meta,
+  titleTransition,
   children,
 }: PageIntroProps) {
   return (
@@ -40,7 +42,12 @@ export function PageIntro({
           {eyebrow}
         </p>
 
-        <h1 className={styles.title}>{title}</h1>
+        <h1
+          className={styles.title}
+          style={titleTransition ? { viewTransitionName: titleTransition } : undefined}
+        >
+          {title}
+        </h1>
         <p className={styles.lede}>{lede}</p>
 
         {meta && meta.length > 0 ? (

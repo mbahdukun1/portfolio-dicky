@@ -10,6 +10,12 @@ export const eInvoiceCase: CaseStudy = {
   role: 'Backend & mobile engineer',
   platform: 'Android app + web console',
   lede: 'Billing that starts on a phone: issue an invoice, watch it turn into a virtual account, and get it requested, approved, and settled without a single email thread.',
+  highlights: [
+    { value: '3', label: 'Steps: request, approve, settle' },
+    { value: '2', label: 'Ways in: platform account or SAP' },
+    { value: 'VA', label: 'A virtual account for every invoice' },
+    { value: 'Mobile', label: 'Approvals from a phone, bulk work on the web' },
+  ],
 
   overview: [
     'E-Invoice is an electronic invoicing product for companies that already run their books in SAP. Before it existed, an invoice travelled as a PDF attachment: finance emailed it, a manager approved it in a chat thread, someone typed the payment into the bank, and someone else re-keyed the whole thing back into the accounting system. Nothing about that chain could be audited, and nobody could answer “where is this invoice right now?” without asking three people.',

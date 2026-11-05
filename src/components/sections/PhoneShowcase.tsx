@@ -48,7 +48,7 @@ export function PhoneShowcase({ shots, onOpen, className, children }: PhoneShowc
 
         <div className={styles.details} aria-live="polite">
           <p className={styles.counter}>
-            {String(index + 1).padStart(2, '0')} / {String(shots.length).padStart(2, '0')}
+            {index + 1} / {shots.length}
           </p>
           <h3 className={styles.title}>{shot?.title}</h3>
           <p className={styles.caption}>{shot?.caption}</p>

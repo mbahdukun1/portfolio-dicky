@@ -10,6 +10,12 @@ export const mamapaCase: CaseStudy = {
   role: 'Full-stack & mobile developer',
   platform: 'Mobile app',
   lede: 'A recipe app for the question everyone asks at 6pm — “mau makan apa?” — with search for when you know, and an AI that suggests for when you do not.',
+  highlights: [
+    { value: '2', label: 'Ways to find a recipe: search or AI' },
+    { value: 'AI', label: 'Dishes suggested from a vague craving' },
+    { value: 'Email + Google', label: 'Sign-in options' },
+    { value: '1', label: 'Action per step card while cooking' },
+  ],
 
   overview: [
     'mamAPA takes its name from the daily Indonesian stalemate: mau makan apa? What do you want to eat? The app answers it two ways. If you already have something in mind, you search for it and get recipes with photos, ingredients, and steps. If you do not — and most of the time you do not — you tell the app roughly what you feel like and it suggests dishes for you.',
